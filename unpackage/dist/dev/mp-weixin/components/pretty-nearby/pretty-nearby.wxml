@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['navigateMap',['$event']]]]]}}" class="map" bindtap="__e"><text class="map_icon"></text><text class="map_text">{{getStoreId?locationname:'定位中...'}}</text></view>
