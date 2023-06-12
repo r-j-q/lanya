@@ -2,20 +2,20 @@
 	"pages": [ 
 		{
 			"path": "pages/index/index",
-			"style":{  
+			"style": {
 				"navigationBarBackgroundColor": "#4E85FD",
 				"navigationBarTextStyle": "white"
-				 
+
 			}
 		},
 		{
 			"path": "pages/game/detail",
-			"style":{ 
-				"navigationStyle":"custom" 
+			"style": {
+				"navigationStyle": "custom"
 			}
 		}
-		 
-		 
+
+
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -23,5 +23,5 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"requiredPrivateInfos":["chooseAddress"]
+	"requiredPrivateInfos": ["chooseAddress"]
 }

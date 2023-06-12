@@ -1,30 +1,29 @@
 {
-    "description": "项目配置文件。",
-    "packOptions": {
-        "ignore": [],
-        "include": []
-    },
-    "setting": {
-        "urlCheck": false,
-        "es6": false,
-        "postcss": false,
-        "minified": false,
-        "newFeature": true,
-        "bigPackageSizeSupport": true,
-        "babelSetting": {
-            "ignore": [],
-            "disablePlugins": [],
-            "outputPath": ""
-        },
-        "condition": false
-    },
-    "compileType": "miniprogram",
-    "libVersion": "2.32.1",
-    "appid": "wx74da6d663a402a12",
-    "projectname": "沃迈得",
-    "condition": {},
-    "editorSetting": {
-        "tabIndent": "insertSpaces",
-        "tabSize": 4
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": false,
+    "postcss": false,
+    "minified": false,
+    "newFeature": true,
+    "bigPackageSizeSupport": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
     }
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.32.2",
+  "appid": "wx74da6d663a402a12",
+  "projectname": "沃迈得",
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
 }

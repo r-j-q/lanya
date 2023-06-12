@@ -58,7 +58,7 @@
     /* 小程序特有相关 */
     "mp-weixin" : {
         "appid" : "wx74da6d663a402a12",
-		 "requiredPrivateInfos" : [ "getLocation" ,"chooseAddress"], 
+		 "requiredPrivateInfos" : [ "getLocation" ,"chooseAddress","chooseLocation"], 
         // "appid" : "wxde357cab633aef0d",客户的
         "setting" : {
             "urlCheck" : false

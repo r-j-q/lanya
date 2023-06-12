@@ -96,7 +96,7 @@
 			if (this.openLanYa) {
 				this.timer = setInterval(() => {
 					this.handleOpenBluetoothAdapter();
-					console.log("7777777777777")
+				 
 				}, 1000)
 			}
 
