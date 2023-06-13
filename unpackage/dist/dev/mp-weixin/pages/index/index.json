@@ -1,5 +1,7 @@
 {
   "navigationBarBackgroundColor": "#4E85FD",
   "navigationBarTextStyle": "white",
-  "usingComponents": {}
+  "usingComponents": {
+    "u-popup": "/uview-ui/components/u-popup/u-popup"
+  }
 }

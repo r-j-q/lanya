@@ -98,10 +98,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uPopup: function () {
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-popup/u-popup */ "uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-popup/u-popup.vue */ 59))
+    },
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function ($event) {
+      _vm.shows = false
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -199,6 +227,27 @@ var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ../../utils/q
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 // import nearby from '@/components/pretty-nearby/pretty-nearby.vue'
 
@@ -209,6 +258,12 @@ var _default = {
   },
   data: function data() {
     return {
+      shows: false,
+      mode: 'bottom',
+      mask: true,
+      // 是否显示遮罩
+      closeable: true,
+      closeIconPos: 'top-right',
       addressInfo: {},
       showButton: false,
       duration: 5000,
@@ -219,6 +274,7 @@ var _default = {
       characteristicId: '',
       lanya: __webpack_require__(/*! ../../static/img/lanya.jpg */ 43),
       getLocation: __webpack_require__(/*! ../../static/img/getLocation.png */ 44),
+      wmd: __webpack_require__(/*! ../../static/img/wmd.png */ 66),
       getUserInfo: {},
       getUserInfoDataToken: false,
       code: "",
@@ -249,6 +305,30 @@ var _default = {
     }
   },
   methods: {
+    btnClick: function btnClick() {
+      this.shows = true;
+    },
+    goSetting: function goSetting() {
+      this.shows = false;
+      uni.openSetting({
+        success: function success(dataAu) {
+          console.log(dataAu, "openSetting");
+          if (dataAu.authSetting["scope.userLocation"] == true) {
+            uni.showToast({
+              title: "授权成功",
+              icon: "none"
+            });
+            //再次授权，调用wx.getLocation的API
+            that.getLocation();
+          } else {
+            uni.showToast({
+              title: "授权失败",
+              icon: "none"
+            });
+          }
+        }
+      });
+    },
     // 999999999999
     openAuthSetting: function openAuthSetting() {
       var _this3 = this;
@@ -257,37 +337,41 @@ var _default = {
         success: function success(res) {
           console.log(res, JSON.stringify(res, "getSetting"));
           if (res.authSetting["scope.userLocation"] != undefined && res.authSetting["scope.userLocation"] != true) {
-            uni.showModal({
-              title: "请求授权当前位置",
-              content: "需要获取您的地理位置，请确认授权",
-              success: function success(res) {
-                if (res.cancel) {
-                  uni.showToast({
-                    title: "拒绝授权",
-                    icon: "none"
-                  });
-                } else if (res.confirm) {
-                  uni.openSetting({
-                    success: function success(dataAu) {
-                      console.log(dataAu, "openSetting");
-                      if (dataAu.authSetting["scope.userLocation"] == true) {
-                        uni.showToast({
-                          title: "授权成功",
-                          icon: "none"
-                        });
-                        //再次授权，调用wx.getLocation的API
-                        that.getLocation();
-                      } else {
-                        uni.showToast({
-                          title: "授权失败",
-                          icon: "none"
-                        });
-                      }
-                    }
-                  });
-                }
-              }
-            });
+
+            // that.goSetting()
+            // console.log('------------------------------');
+            // uni.showModal({
+            // 	title: "请求授权当前位置",
+            // 	content: "需要获取您的地理位置，请确认授权",
+            // 	success: function(res) {
+            // 		if (res.cancel) {
+            // 			uni.showToast({
+            // 				title: "拒绝授权",
+            // 				icon: "none"
+            // 			});
+            // 		} else if (res.confirm) {
+            // 			uni.openSetting({
+            // 				success: function(dataAu) {
+            // 					console.log(dataAu, "openSetting");
+            // 					if (dataAu.authSetting[
+            // 						"scope.userLocation"] == true) {
+            // 						uni.showToast({
+            // 							title: "授权成功",
+            // 							icon: "none"
+            // 						});
+            // 						//再次授权，调用wx.getLocation的API
+            // 						that.getLocation();
+            // 					} else {
+            // 						uni.showToast({
+            // 							title: "授权失败",
+            // 							icon: "none"
+            // 						});
+            // 					}
+            // 				},
+            // 			});
+            // 		}
+            // 	},
+            // });
           } else if (res.authSetting["scope.userLocation"] == undefined) {
             //调用wx.getLocation的APIconsole.log("首次授权");
             _this3.getLocation();
@@ -297,6 +381,7 @@ var _default = {
           }
         },
         complete: function complete() {
+          that.btnClick();
           console.log("getSetting");
         }
       });
@@ -319,10 +404,10 @@ var _default = {
           wx.setStorageSync('longitude', res.longitude);
         },
         fail: function fail(err) {
-          uni.showToast({
-            title: "授权未通过",
-            icon: "none"
-          });
+          // uni.showToast({
+          // 	title: "授权未通过",
+          // 	icon: "none",
+          // });
           that.openAuthSetting();
         },
         complete: function complete() {
@@ -764,8 +849,12 @@ var _default = {
       });
     },
     // 支付时判断蓝牙是不是连接的
-    openBluetoothAdapterPay: function openBluetoothAdapterPay() {
+    openBluetoothAdapterPay: function openBluetoothAdapterPay(v) {
       var that = this;
+      if (v != 'open') {
+        that.createorder('PCSS', 1);
+        return;
+      }
       uni.openBluetoothAdapter({
         success: function success(res) {
           // 开启支付，为了测试先注释掉
@@ -842,7 +931,10 @@ var _default = {
             success: function success(res) {
               console.log('支付成功', res);
               _this.writeBLECharacteristicValue(v);
+
+              // writeBLECharacteristicValue('PCSS')
             },
+
             fail: function fail(err) {
               console.log('支付失败', err);
             }

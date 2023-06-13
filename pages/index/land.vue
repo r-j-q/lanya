@@ -15,7 +15,56 @@
 		</cover-view>
 	</cover-view>
 </view>
- 
+ <script>
+	 
+	      getAuthorize() {
+	 
+	             let that = this
+	 
+	             uni.authorize({
+	 
+	                 scope: 'scope.userLocation',
+	 
+	                 success(res) {
+	 
+	                     that.getLocation()
+	 
+	                 },
+	 
+	                 // 授权失败
+	 
+	                 fail(err) {
+	 
+	                     uni.showModal({
+	 
+	                         title: '提示',
+	 
+	                         content: '请授权位置获取附近的商家!',
+	 
+	                         showCancel: false,
+	 
+	                         confirmText: '确认授权',
+	 
+	                         success() {
+	 
+	                             uni.openSetting({
+	 
+	                                 success(res) {},
+	 
+	                                 fail(err) {}
+	 
+	                             })
+	 
+	                         }
+	 
+	                     })
+	 
+	                 }
+	 
+	             })
+	 
+	         } 
+ </script>
 <style lang="scss" scoped>
     .mapBox {
 		position: relative;
