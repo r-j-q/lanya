@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/game/detail"
+  ],
+  "subPackages": [],
+  "window": {
+    "defaultTitle": "",
+    "titleBarColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {
+    "plugin-wrapper": "/plugin-wrapper"
+  }
+}

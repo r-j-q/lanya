@@ -1,0 +1,6 @@
+{
+  "titleBarColor": "#4E85FD",
+  "usingComponents": {
+    "u-popup": "/uview-ui/components/u-popup/u-popup"
+  }
+}

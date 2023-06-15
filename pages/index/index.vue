@@ -114,8 +114,12 @@
 			}
 		},
 		onLoad() {
-
+			// #ifdef APP-PLUS
 			this.handleLanya()
+			// #endif
+			// #ifdef MP-ALIPAY
+			this.userAlipayLoginCode()
+			// #endif
 		},
 
 		onShow() {
@@ -136,28 +140,76 @@
 			}
 		},
 		methods: {
+			// 支付宝登录授权认证
+			userAlipayLoginCode() {
+				let that = this;
+				wx.login({
+					success(res) {
+						that.alipayLogin(res.code)
+					},
+				});
+			},
+			alipayLogin(code) {
+				uni.request({
+					url: 'https://ys.shningmi.com/api/alipay/login',
+					data: {
+						code
+					},
+					header: {
+						'Content-Type': 'application/json',
+						'token': _this.getUserInfo.data.token
+					},
+					method: 'POST',
+					success: (res) => {
+						let {
+							data
+						} = res;
+
+						uni.setStorageSync('usersInfo', JSON.stringify(
+							data));
+						this.getUserInfo = JSON.parse(uni.getStorageSync(
+							'usersInfo'));
+						console.log('缓存数据--2----', this.getUserInfo.data
+							.userinfo);
+						if (this.getUserInfo.data && this.getUserInfo.data
+							.userinfo) {
+
+							console.log('缓存数据--2----', this.getUserInfo
+								.data.userinfo);
+							this.getUserInfoDataToken = this.getUserInfo
+								.data.userinfo ? true : false
+						} 
+
+
+					}
+				})
+			},
+			// 支付宝登录授权认证
+
+
+
 			// 云函数
-				async getPhoneNumber (e) {
-						 
-						wx.cloud.init() //初始化
-						
-						wx.cloud.callFunction({  //调用云服务
-							name: "payCode",    //云函数名称
-							data: {
-								outTradeNo: outTradeNo,   
-								openId: openId,  
-								returnCode: returnCode,   
-								cashFee: cashFee,  
-								},
-							})
-							.then(res => {
-									console.log('成功',res)
-									console.log('手机号',res.result.phoneInfo.phoneNumber)
-								})
-							.catch(err => {
-									console.log('失败',res)
-								})
-						}, 
+			async getPhoneNumber(e) {
+
+				wx.cloud.init() //初始化
+
+				wx.cloud.callFunction({ //调用云服务
+						name: "payCode", //云函数名称
+						data: {
+							outTradeNo: outTradeNo,
+							openId: openId,
+							returnCode: returnCode,
+							cashFee: cashFee,
+						},
+					})
+					.then(res => {
+						console.log('成功', res)
+						console.log('手机号', res.result.phoneInfo.phoneNumber)
+					})
+					.catch(err => {
+						console.log('失败', res)
+					})
+			},
 			//云函数
 
 			btnClick() {
