@@ -1557,7 +1557,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"沃迈得","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"沃迈得","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -8938,7 +8938,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"沃迈得","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"沃迈得","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8959,14 +8959,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"沃迈得","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"沃迈得","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"沃迈得","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"沃迈得","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -9062,7 +9062,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"沃迈得","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"沃迈得","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9626,13 +9626,1051 @@ function normalizeComponent (
 
 
 /***/ }),
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
+/* 33 */
+/*!************************************!*\
+  !*** E:/y/lanya/uview-ui/index.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _mixin = _interopRequireDefault(__webpack_require__(/*! ./libs/mixin/mixin.js */ 34));
+var _request = _interopRequireDefault(__webpack_require__(/*! ./libs/request */ 35));
+var _queryParams = _interopRequireDefault(__webpack_require__(/*! ./libs/function/queryParams.js */ 39));
+var _route = _interopRequireDefault(__webpack_require__(/*! ./libs/function/route.js */ 40));
+var _timeFormat = _interopRequireDefault(__webpack_require__(/*! ./libs/function/timeFormat.js */ 44));
+var _timeFrom = _interopRequireDefault(__webpack_require__(/*! ./libs/function/timeFrom.js */ 45));
+var _colorGradient = _interopRequireDefault(__webpack_require__(/*! ./libs/function/colorGradient.js */ 46));
+var _guid = _interopRequireDefault(__webpack_require__(/*! ./libs/function/guid.js */ 47));
+var _color = _interopRequireDefault(__webpack_require__(/*! ./libs/function/color.js */ 48));
+var _type2icon = _interopRequireDefault(__webpack_require__(/*! ./libs/function/type2icon.js */ 49));
+var _randomArray = _interopRequireDefault(__webpack_require__(/*! ./libs/function/randomArray.js */ 50));
+var _deepClone = _interopRequireDefault(__webpack_require__(/*! ./libs/function/deepClone.js */ 37));
+var _deepMerge = _interopRequireDefault(__webpack_require__(/*! ./libs/function/deepMerge.js */ 36));
+var _addUnit = _interopRequireDefault(__webpack_require__(/*! ./libs/function/addUnit.js */ 51));
+var _test = _interopRequireDefault(__webpack_require__(/*! ./libs/function/test.js */ 38));
+var _random = _interopRequireDefault(__webpack_require__(/*! ./libs/function/random.js */ 52));
+var _trim = _interopRequireDefault(__webpack_require__(/*! ./libs/function/trim.js */ 53));
+var _toast = _interopRequireDefault(__webpack_require__(/*! ./libs/function/toast.js */ 54));
+var _getParent = _interopRequireDefault(__webpack_require__(/*! ./libs/function/getParent.js */ 55));
+var _$parent = _interopRequireDefault(__webpack_require__(/*! ./libs/function/$parent.js */ 56));
+var _sys = __webpack_require__(/*! ./libs/function/sys.js */ 57);
+var _debounce = _interopRequireDefault(__webpack_require__(/*! ./libs/function/debounce.js */ 58));
+var _throttle = _interopRequireDefault(__webpack_require__(/*! ./libs/function/throttle.js */ 59));
+var _config = _interopRequireDefault(__webpack_require__(/*! ./libs/config/config.js */ 60));
+var _zIndex = _interopRequireDefault(__webpack_require__(/*! ./libs/config/zIndex.js */ 61));
+// 引入全局mixin
+
+// 引入关于是否mixin集成小程序分享的配置
+// import wxshare from './libs/mixin/mpShare.js'
+// 全局挂载引入http相关请求拦截插件
+
+function wranning(str) {
+  // 开发环境进行信息输出,主要是一些报错信息
+  // 这个环境的来由是在程序编写时候,点击hx编辑器运行调试代码的时候,详见:
+  // 	https://uniapp.dcloud.io/frame?id=%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e5%92%8c%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83
+  if (true) {
+    console.warn(str);
+  }
+}
+
+// 尝试判断在根目录的/store中是否有$u.mixin.js，此文件uView默认为需要挂在到全局的vuex的state变量
+// HX2.6.11版本,放到try中,控制台依然会警告,暂时不用此方式，
+// let vuexStore = {};
+// try {
+// 	vuexStore = require("@/store/$u.mixin.js");
+// } catch (e) {
+// 	//TODO handle the exception
+// }
+
+// post类型对象参数转为get类型url参数
+
+var $u = {
+  queryParams: _queryParams.default,
+  route: _route.default,
+  timeFormat: _timeFormat.default,
+  date: _timeFormat.default,
+  // 另名date
+  timeFrom: _timeFrom.default,
+  colorGradient: _colorGradient.default.colorGradient,
+  colorToRgba: _colorGradient.default.colorToRgba,
+  guid: _guid.default,
+  color: _color.default,
+  sys: _sys.sys,
+  os: _sys.os,
+  type2icon: _type2icon.default,
+  randomArray: _randomArray.default,
+  wranning: wranning,
+  get: _request.default.get,
+  post: _request.default.post,
+  put: _request.default.put,
+  'delete': _request.default.delete,
+  hexToRgb: _colorGradient.default.hexToRgb,
+  rgbToHex: _colorGradient.default.rgbToHex,
+  test: _test.default,
+  random: _random.default,
+  deepClone: _deepClone.default,
+  deepMerge: _deepMerge.default,
+  getParent: _getParent.default,
+  $parent: _$parent.default,
+  addUnit: _addUnit.default,
+  trim: _trim.default,
+  type: ['primary', 'success', 'error', 'warning', 'info'],
+  http: _request.default,
+  toast: _toast.default,
+  config: _config.default,
+  // uView配置信息相关，比如版本号
+  zIndex: _zIndex.default,
+  debounce: _debounce.default,
+  throttle: _throttle.default
+};
+
+// $u挂载到uni对象上
+uni.$u = $u;
+var install = function install(Vue) {
+  Vue.mixin(_mixin.default);
+  if (Vue.prototype.openShare) {
+    Vue.mixin(mpShare);
+  }
+  // Vue.mixin(vuexStore);
+  // 时间格式化，同时两个名称，date和timeFormat
+  Vue.filter('timeFormat', function (timestamp, format) {
+    return (0, _timeFormat.default)(timestamp, format);
+  });
+  Vue.filter('date', function (timestamp, format) {
+    return (0, _timeFormat.default)(timestamp, format);
+  });
+  // 将多久以前的方法，注入到全局过滤器
+  Vue.filter('timeFrom', function (timestamp, format) {
+    return (0, _timeFrom.default)(timestamp, format);
+  });
+  Vue.prototype.$u = $u;
+};
+var _default = {
+  install: install
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+/* 34 */
+/*!***********************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/mixin/mixin.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(uni) {module.exports = {
+  data: function data() {
+    return {};
+  },
+  onLoad: function onLoad() {
+    // getRect挂载到$u上，因为这方法需要使用in(this)，所以无法把它独立成一个单独的文件导出
+    this.$u.getRect = this.$uGetRect;
+  },
+  methods: {
+    // 查询节点信息
+    // 目前此方法在支付宝小程序中无法获取组件跟接点的尺寸，为支付宝的bug(2020-07-21)
+    // 解决办法为在组件根部再套一个没有任何作用的view元素
+    $uGetRect: function $uGetRect(selector, all) {
+      var _this = this;
+      return new Promise(function (resolve) {
+        uni.createSelectorQuery().in(_this)[all ? 'selectAll' : 'select'](selector).boundingClientRect(function (rect) {
+          if (all && Array.isArray(rect) && rect.length) {
+            resolve(rect);
+          }
+          if (!all && rect) {
+            resolve(rect);
+          }
+        }).exec();
+      });
+    },
+    getParentData: function getParentData() {
+      var _this2 = this;
+      var parentName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      // 避免在created中去定义parent变量
+      if (!this.parent) this.parent = false;
+      // 这里的本质原理是，通过获取父组件实例(也即u-radio-group的this)
+      // 将父组件this中对应的参数，赋值给本组件(u-radio的this)的parentData对象中对应的属性
+      // 之所以需要这么做，是因为所有端中，头条小程序不支持通过this.parent.xxx去监听父组件参数的变化
+      this.parent = this.$u.$parent.call(this, parentName);
+      if (this.parent) {
+        // 历遍parentData中的属性，将parent中的同名属性赋值给parentData
+        Object.keys(this.parentData).map(function (key) {
+          _this2.parentData[key] = _this2.parent[key];
+        });
+      }
+    },
+    // 阻止事件冒泡
+    preventEvent: function preventEvent(e) {
+      e && e.stopPropagation && e.stopPropagation();
+    }
+  },
+  onReachBottom: function onReachBottom() {
+    uni.$emit('uOnReachBottom');
+  },
+  beforeDestroy: function beforeDestroy() {
+    var _this3 = this;
+    // 判断当前页面是否存在parent和children，一般在checkbox和checkbox-group父子联动的场景会有此情况
+    // 组件销毁时，移除子组件在父组件children数组中的实例，释放资源，避免数据混乱
+    if (this.parent && uni.$u.test.array(this.parent.children)) {
+      // 组件销毁时，移除父组件中的children数组中对应的实例
+      var childrenList = this.parent.children;
+      childrenList.map(function (child, index) {
+        // 如果相等，则移除
+        if (child === _this3) {
+          childrenList.splice(index, 1);
+        }
+      });
+    }
+  }
+};
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+/* 35 */
+/*!*************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/request/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+var _deepMerge = _interopRequireDefault(__webpack_require__(/*! ../function/deepMerge */ 36));
+var _test = _interopRequireDefault(__webpack_require__(/*! ../function/test */ 38));
+var Request = /*#__PURE__*/function () {
+  function Request() {
+    var _this = this;
+    (0, _classCallCheck2.default)(this, Request);
+    this.config = {
+      baseUrl: '',
+      // 请求的根域名
+      // 默认的请求头
+      header: {},
+      method: 'POST',
+      // 设置为json，返回后uni.request会对数据进行一次JSON.parse
+      dataType: 'json',
+      // 此参数无需处理，因为5+和支付宝小程序不支持，默认为text即可
+      responseType: 'text',
+      showLoading: true,
+      // 是否显示请求中的loading
+      loadingText: '请求中...',
+      loadingTime: 800,
+      // 在此时间内，请求还没回来的话，就显示加载中动画，单位ms
+      timer: null,
+      // 定时器
+      originalData: false,
+      // 是否在拦截器中返回服务端的原始数据，见文档说明
+      loadingMask: true // 展示loading的时候，是否给一个透明的蒙层，防止触摸穿透
+    };
+
+    // 拦截器
+    this.interceptor = {
+      // 请求前的拦截
+      request: null,
+      // 请求后的拦截
+      response: null
+    };
+
+    // get请求
+    this.get = function (url) {
+      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      return _this.request({
+        method: 'GET',
+        url: url,
+        header: header,
+        data: data
+      });
+    };
+
+    // post请求
+    this.post = function (url) {
+      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      return _this.request({
+        url: url,
+        method: 'POST',
+        header: header,
+        data: data
+      });
+    };
+
+    // put请求，不支持支付宝小程序(HX2.6.15)
+    this.put = function (url) {
+      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      return _this.request({
+        url: url,
+        method: 'PUT',
+        header: header,
+        data: data
+      });
+    };
+
+    // delete请求，不支持支付宝和头条小程序(HX2.6.15)
+    this.delete = function (url) {
+      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      return _this.request({
+        url: url,
+        method: 'DELETE',
+        header: header,
+        data: data
+      });
+    };
+  }
+  (0, _createClass2.default)(Request, [{
+    key: "setConfig",
+    value:
+    // 设置全局默认配置
+    function setConfig(customConfig) {
+      // 深度合并对象，否则会造成对象深层属性丢失
+      this.config = (0, _deepMerge.default)(this.config, customConfig);
+    }
+
+    // 主要请求部分
+  }, {
+    key: "request",
+    value: function request() {
+      var _this2 = this;
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      // 检查请求拦截
+      if (this.interceptor.request && typeof this.interceptor.request === 'function') {
+        var tmpConfig = {};
+        var interceptorRequest = this.interceptor.request(options);
+        if (interceptorRequest === false) {
+          // 返回一个处于pending状态中的Promise，来取消原promise，避免进入then()回调
+          return new Promise(function () {});
+        }
+        this.options = interceptorRequest;
+      }
+      options.dataType = options.dataType || this.config.dataType;
+      options.responseType = options.responseType || this.config.responseType;
+      options.url = options.url || '';
+      options.params = options.params || {};
+      options.header = Object.assign({}, this.config.header, options.header);
+      options.method = options.method || this.config.method;
+      return new Promise(function (resolve, reject) {
+        options.complete = function (response) {
+          // 请求返回后，隐藏loading(如果请求返回快的话，可能会没有loading)
+          uni.hideLoading();
+          // 清除定时器，如果请求回来了，就无需loading
+          clearTimeout(_this2.config.timer);
+          _this2.config.timer = null;
+          // 判断用户对拦截返回数据的要求，如果originalData为true，返回所有的数据(response)到拦截器，否则只返回response.data
+          if (_this2.config.originalData) {
+            // 判断是否存在拦截器
+            if (_this2.interceptor.response && typeof _this2.interceptor.response === 'function') {
+              var resInterceptors = _this2.interceptor.response(response);
+              // 如果拦截器不返回false，就将拦截器返回的内容给this.$u.post的then回调
+              if (resInterceptors !== false) {
+                resolve(resInterceptors);
+              } else {
+                // 如果拦截器返回false，意味着拦截器定义者认为返回有问题，直接接入catch回调
+                reject(response);
+              }
+            } else {
+              // 如果要求返回原始数据，就算没有拦截器，也返回最原始的数据
+              resolve(response);
+            }
+          } else {
+            if (response.statusCode == 200) {
+              if (_this2.interceptor.response && typeof _this2.interceptor.response === 'function') {
+                var _resInterceptors = _this2.interceptor.response(response.data);
+                if (_resInterceptors !== false) {
+                  resolve(_resInterceptors);
+                } else {
+                  reject(response.data);
+                }
+              } else {
+                // 如果不是返回原始数据(originalData=false)，且没有拦截器的情况下，返回纯数据给then回调
+                resolve(response.data);
+              }
+            } else {
+              // 不返回原始数据的情况下，服务器状态码不为200，modal弹框提示
+              // if(response.errMsg) {
+              // 	uni.showModal({
+              // 		title: response.errMsg
+              // 	});
+              // }
+              reject(response);
+            }
+          }
+        };
+
+        // 判断用户传递的URL是否/开头,如果不是,加上/，这里使用了uView的test.js验证库的url()方法
+        options.url = _test.default.url(options.url) ? options.url : _this2.config.baseUrl + (options.url.indexOf('/') == 0 ? options.url : '/' + options.url);
+
+        // 是否显示loading
+        // 加一个是否已有timer定时器的判断，否则有两个同时请求的时候，后者会清除前者的定时器id
+        // 而没有清除前者的定时器，导致前者超时，一直显示loading
+        if (_this2.config.showLoading && !_this2.config.timer) {
+          _this2.config.timer = setTimeout(function () {
+            uni.showLoading({
+              title: _this2.config.loadingText,
+              mask: _this2.config.loadingMask
+            });
+            _this2.config.timer = null;
+          }, _this2.config.loadingTime);
+        }
+        uni.request(options);
+      });
+      // .catch(res => {
+      // 	// 如果返回reject()，不让其进入this.$u.post().then().catch()后面的catct()
+      // 	// 因为很多人都会忘了写后面的catch()，导致报错捕获不到catch
+      // 	return new Promise(()=>{});
+      // })
+    }
+  }]);
+  return Request;
+}();
+var _default = new Request();
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+/* 36 */
+/*!******************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/deepMerge.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+var _deepClone = _interopRequireDefault(__webpack_require__(/*! ./deepClone */ 37));
+// JS对象深度合并
+function deepMerge() {
+  var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var source = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  target = (0, _deepClone.default)(target);
+  if ((0, _typeof2.default)(target) !== 'object' || target === null || (0, _typeof2.default)(source) !== 'object' || source === null) return target;
+  var merged = Array.isArray(target) ? target.slice() : Object.assign({}, target);
+  for (var prop in source) {
+    if (!source.hasOwnProperty(prop)) continue;
+    var sourceValue = source[prop];
+    var targetValue = merged[prop];
+    if (sourceValue instanceof Date) {
+      merged[prop] = new Date(sourceValue);
+    } else if (sourceValue instanceof RegExp) {
+      merged[prop] = new RegExp(sourceValue);
+    } else if (sourceValue instanceof Map) {
+      merged[prop] = new Map(sourceValue);
+    } else if (sourceValue instanceof Set) {
+      merged[prop] = new Set(sourceValue);
+    } else if ((0, _typeof2.default)(sourceValue) === 'object' && sourceValue !== null) {
+      merged[prop] = deepMerge(targetValue, sourceValue);
+    } else {
+      merged[prop] = sourceValue;
+    }
+  }
+  return merged;
+}
+var _default = deepMerge;
+exports.default = _default;
+
+/***/ }),
+/* 37 */
+/*!******************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/deepClone.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+// 判断arr是否为一个数组，返回一个bool值
+function isArray(arr) {
+  return Object.prototype.toString.call(arr) === '[object Array]';
+}
+
+// 深度克隆
+function deepClone(obj) {
+  var cache = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new WeakMap();
+  if (obj === null || (0, _typeof2.default)(obj) !== 'object') return obj;
+  if (cache.has(obj)) return cache.get(obj);
+  var clone;
+  if (obj instanceof Date) {
+    clone = new Date(obj.getTime());
+  } else if (obj instanceof RegExp) {
+    clone = new RegExp(obj);
+  } else if (obj instanceof Map) {
+    clone = new Map(Array.from(obj, function (_ref) {
+      var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
+        key = _ref2[0],
+        value = _ref2[1];
+      return [key, deepClone(value, cache)];
+    }));
+  } else if (obj instanceof Set) {
+    clone = new Set(Array.from(obj, function (value) {
+      return deepClone(value, cache);
+    }));
+  } else if (Array.isArray(obj)) {
+    clone = obj.map(function (value) {
+      return deepClone(value, cache);
+    });
+  } else if (Object.prototype.toString.call(obj) === '[object Object]') {
+    clone = Object.create(Object.getPrototypeOf(obj));
+    cache.set(obj, clone);
+    for (var _i = 0, _Object$entries = Object.entries(obj); _i < _Object$entries.length; _i++) {
+      var _Object$entries$_i = (0, _slicedToArray2.default)(_Object$entries[_i], 2),
+        key = _Object$entries$_i[0],
+        value = _Object$entries$_i[1];
+      clone[key] = deepClone(value, cache);
+    }
+  } else {
+    clone = Object.assign({}, obj);
+  }
+  cache.set(obj, clone);
+  return clone;
+}
+var _default = deepClone;
+exports.default = _default;
+
+/***/ }),
+/* 38 */
+/*!*************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/test.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+/**
+ * 验证电子邮箱格式
+ */
+function email(value) {
+  return /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/.test(value);
+}
+
+/**
+ * 验证手机格式
+ */
+function mobile(value) {
+  return /^1[3-9]\d{9}$/.test(value);
+}
+
+/**
+ * 验证URL格式
+ */
+function url(value) {
+  return /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/.test(value);
+}
+
+/**
+ * 验证日期格式
+ */
+function date(value) {
+  return !/Invalid|NaN/.test(new Date(value).toString());
+}
+
+/**
+ * 验证ISO类型的日期格式
+ */
+function dateISO(value) {
+  return /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(value);
+}
+
+/**
+ * 验证十进制数字
+ */
+function number(value) {
+  return /^[\+-]?(\d+\.?\d*|\.\d+|\d\.\d+e\+\d+)$/.test(value);
+}
+
+/**
+ * 验证整数
+ */
+function digits(value) {
+  return /^\d+$/.test(value);
+}
+
+/**
+ * 验证身份证号码
+ */
+function idCard(value) {
+  return /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(value);
+}
+
+/**
+ * 是否车牌号
+ */
+function carNo(value) {
+  // 新能源车牌
+  var xreg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([0-9]{5}[DF]$)|([DF][A-HJ-NP-Z0-9][0-9]{4}$))/;
+  // 旧车牌
+  var creg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳]{1}$/;
+  if (value.length === 7) {
+    return creg.test(value);
+  } else if (value.length === 8) {
+    return xreg.test(value);
+  } else {
+    return false;
+  }
+}
+
+/**
+ * 金额,只允许2位小数
+ */
+function amount(value) {
+  //金额，只允许保留两位小数
+  return /^[1-9]\d*(,\d{3})*(\.\d{1,2})?$|^0\.\d{1,2}$/.test(value);
+}
+
+/**
+ * 中文
+ */
+function chinese(value) {
+  var reg = /^[\u4e00-\u9fa5]+$/gi;
+  return reg.test(value);
+}
+
+/**
+ * 只能输入字母
+ */
+function letter(value) {
+  return /^[a-zA-Z]*$/.test(value);
+}
+
+/**
+ * 只能是字母或者数字
+ */
+function enOrNum(value) {
+  //英文或者数字
+  var reg = /^[0-9a-zA-Z]*$/g;
+  return reg.test(value);
+}
+
+/**
+ * 验证是否包含某个值
+ */
+function contains(value, param) {
+  return value.indexOf(param) >= 0;
+}
+
+/**
+ * 验证一个值范围[min, max]
+ */
+function range(value, param) {
+  return value >= param[0] && value <= param[1];
+}
+
+/**
+ * 验证一个长度范围[min, max]
+ */
+function rangeLength(value, param) {
+  return value.length >= param[0] && value.length <= param[1];
+}
+
+/**
+ * 是否固定电话
+ */
+function landline(value) {
+  var reg = /^\d{3,4}-\d{7,8}(-\d{3,4})?$/;
+  return reg.test(value);
+}
+
+/**
+ * 判断是否为空
+ */
+function empty(value) {
+  switch ((0, _typeof2.default)(value)) {
+    case 'undefined':
+      return true;
+    case 'string':
+      if (value.replace(/(^[ \t\n\r]*)|([ \t\n\r]*$)/g, '').length == 0) return true;
+      break;
+    case 'boolean':
+      if (!value) return true;
+      break;
+    case 'number':
+      if (0 === value || isNaN(value)) return true;
+      break;
+    case 'object':
+      if (null === value || value.length === 0) return true;
+      for (var i in value) {
+        return false;
+      }
+      return true;
+  }
+  return false;
+}
+
+/**
+ * 是否json字符串
+ */
+function jsonString(value) {
+  if (typeof value == 'string') {
+    try {
+      var obj = JSON.parse(value);
+      if ((0, _typeof2.default)(obj) == 'object' && obj) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
+  return false;
+}
+
+/**
+ * 是否数组
+ */
+function array(value) {
+  if (typeof Array.isArray === "function") {
+    return Array.isArray(value);
+  } else {
+    return Object.prototype.toString.call(value) === "[object Array]";
+  }
+}
+
+/**
+ * 是否对象
+ */
+function object(value) {
+  return Object.prototype.toString.call(value) === '[object Object]';
+}
+
+/**
+ * 是否短信验证码
+ */
+function code(value) {
+  var len = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
+  return new RegExp("^\\d{".concat(len, "}$")).test(value);
+}
+var _default = {
+  email: email,
+  mobile: mobile,
+  url: url,
+  date: date,
+  dateISO: dateISO,
+  number: number,
+  digits: digits,
+  idCard: idCard,
+  carNo: carNo,
+  amount: amount,
+  chinese: chinese,
+  letter: letter,
+  enOrNum: enOrNum,
+  contains: contains,
+  range: range,
+  rangeLength: rangeLength,
+  empty: empty,
+  isEmpty: empty,
+  jsonString: jsonString,
+  landline: landline,
+  object: object,
+  array: array,
+  code: code
+};
+exports.default = _default;
+
+/***/ }),
 /* 39 */
+/*!********************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/queryParams.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+/**
+ * 对象转url参数
+ * @param {*} data,对象
+ * @param {*} isPrefix,是否自动加上"?"
+ */
+function queryParams() {
+  var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var isPrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  var arrayFormat = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'brackets';
+  var prefix = isPrefix ? '?' : '';
+  var _result = [];
+  if (['indices', 'brackets', 'repeat', 'comma'].indexOf(arrayFormat) == -1) arrayFormat = 'brackets';
+  var _loop = function _loop(key) {
+    var value = data[key];
+    // 去掉为空的参数
+    if (['', undefined, null].indexOf(value) >= 0) {
+      return "continue";
+    }
+    // 如果值为数组，另行处理
+    if (value.constructor === Array) {
+      // e.g. {ids: [1, 2, 3]}
+      switch (arrayFormat) {
+        case 'indices':
+          // 结果: ids[0]=1&ids[1]=2&ids[2]=3
+          for (var i = 0; i < value.length; i++) {
+            _result.push(key + '[' + i + ']=' + value[i]);
+          }
+          break;
+        case 'brackets':
+          // 结果: ids[]=1&ids[]=2&ids[]=3
+          value.forEach(function (_value) {
+            _result.push(key + '[]=' + _value);
+          });
+          break;
+        case 'repeat':
+          // 结果: ids=1&ids=2&ids=3
+          value.forEach(function (_value) {
+            _result.push(key + '=' + _value);
+          });
+          break;
+        case 'comma':
+          // 结果: ids=1,2,3
+          var commaStr = "";
+          value.forEach(function (_value) {
+            commaStr += (commaStr ? "," : "") + _value;
+          });
+          _result.push(key + '=' + commaStr);
+          break;
+        default:
+          value.forEach(function (_value) {
+            _result.push(key + '[]=' + _value);
+          });
+      }
+    } else {
+      _result.push(key + '=' + value);
+    }
+  };
+  for (var key in data) {
+    var _ret = _loop(key);
+    if (_ret === "continue") continue;
+  }
+  return _result.length ? prefix + _result.join('&') : '';
+}
+var _default = queryParams;
+exports.default = _default;
+
+/***/ }),
+/* 40 */
+/*!**************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/route.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 41));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 43));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+/**
+ * 路由跳转方法，该方法相对于直接使用uni.xxx的好处是使用更加简单快捷
+ * 并且带有路由拦截功能
+ */
+var Router = /*#__PURE__*/function () {
+  function Router() {
+    (0, _classCallCheck2.default)(this, Router);
+    // 原始属性定义
+    this.config = {
+      type: 'navigateTo',
+      url: '',
+      delta: 1,
+      // navigateBack页面后退时,回退的层数
+      params: {},
+      // 传递的参数
+      animationType: 'pop-in',
+      // 窗口动画,只在APP有效
+      animationDuration: 300,
+      // 窗口动画持续时间,单位毫秒,只在APP有效
+      intercept: false // 是否需要拦截
+    };
+    // 因为route方法是需要对外赋值给另外的对象使用，同时route内部有使用this，会导致route失去上下文
+    // 这里在构造函数中进行this绑定
+    this.route = this.route.bind(this);
+  }
+
+  // 判断url前面是否有"/"，如果没有则加上，否则无法跳转
+  (0, _createClass2.default)(Router, [{
+    key: "addRootPath",
+    value: function addRootPath(url) {
+      return url[0] === '/' ? url : "/".concat(url);
+    }
+
+    // 整合路由参数
+  }, {
+    key: "mixinParam",
+    value: function mixinParam(url, params) {
+      url = url && this.addRootPath(url);
+
+      // 使用正则匹配，主要依据是判断是否有"/","?","="等，如“/page/index/index?name=mary"
+      // 如果有url中有get参数，转换后无需带上"?"
+      var query = '';
+      if (/.*\/.*\?.*=.*/.test(url)) {
+        // object对象转为get类型的参数
+        query = uni.$u.queryParams(params, false);
+        // 因为已有get参数,所以后面拼接的参数需要带上"&"隔开
+        return url += "&" + query;
+      } else {
+        // 直接拼接参数，因为此处url中没有后面的query参数，也就没有"?/&"之类的符号
+        query = uni.$u.queryParams(params);
+        return url += query;
+      }
+    }
+
+    // 对外的方法名称
+  }, {
+    key: "route",
+    value: function () {
+      var _route = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var options,
+          params,
+          mergeConfig,
+          isNext,
+          _args = arguments;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                options = _args.length > 0 && _args[0] !== undefined ? _args[0] : {};
+                params = _args.length > 1 && _args[1] !== undefined ? _args[1] : {};
+                // 合并用户的配置和内部的默认配置
+                mergeConfig = {};
+                if (typeof options === 'string') {
+                  // 如果options为字符串，则为route(url, params)的形式
+                  mergeConfig.url = this.mixinParam(options, params);
+                  mergeConfig.type = 'navigateTo';
+                } else {
+                  mergeConfig = uni.$u.deepMerge(this.config, options);
+                  // 否则正常使用mergeConfig中的url和params进行拼接
+                  mergeConfig.url = this.mixinParam(options.url, options.params);
+                }
+                if (params.intercept) {
+                  this.config.intercept = params.intercept;
+                }
+                // params参数也带给拦截器
+                mergeConfig.params = params;
+                // 合并内外部参数
+                mergeConfig = uni.$u.deepMerge(this.config, mergeConfig);
+                // 判断用户是否定义了拦截器
+                if (!(typeof uni.$u.routeIntercept === 'function')) {
+                  _context.next = 14;
+                  break;
+                }
+                _context.next = 10;
+                return new Promise(function (resolve, reject) {
+                  uni.$u.routeIntercept(mergeConfig, resolve);
+                });
+              case 10:
+                isNext = _context.sent;
+                // 如果isNext为true，则执行路由跳转
+                isNext && this.openPage(mergeConfig);
+                _context.next = 15;
+                break;
+              case 14:
+                this.openPage(mergeConfig);
+              case 15:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+      function route() {
+        return _route.apply(this, arguments);
+      }
+      return route;
+    }() // 执行路由跳转
+  }, {
+    key: "openPage",
+    value: function openPage(config) {
+      // 解构参数
+      var url = config.url,
+        type = config.type,
+        delta = config.delta,
+        animationType = config.animationType,
+        animationDuration = config.animationDuration;
+      if (config.type == 'navigateTo' || config.type == 'to') {
+        uni.navigateTo({
+          url: url,
+          animationType: animationType,
+          animationDuration: animationDuration
+        });
+      }
+      if (config.type == 'redirectTo' || config.type == 'redirect') {
+        uni.redirectTo({
+          url: url
+        });
+      }
+      if (config.type == 'switchTab' || config.type == 'tab') {
+        uni.switchTab({
+          url: url
+        });
+      }
+      if (config.type == 'reLaunch' || config.type == 'launch') {
+        uni.reLaunch({
+          url: url
+        });
+      }
+      if (config.type == 'navigateBack' || config.type == 'back') {
+        uni.navigateBack({
+          delta: delta
+        });
+      }
+    }
+  }]);
+  return Router;
+}();
+var _default = new Router().route;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+/* 41 */
 /*!************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
   \************************************************************************************************/
@@ -9641,11 +10679,11 @@ function normalizeComponent (
 
 // TODO(Babel 8): Remove this file.
 
-var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 40)();
+var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 42)();
 module.exports = runtime;
 
 /***/ }),
-/* 40 */
+/* 42 */
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
   \*******************************************************************/
@@ -9966,7 +11004,7 @@ function _regeneratorRuntime() {
 module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 41 */
+/* 43 */
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
   \*****************************************************************/
@@ -10006,7 +11044,892 @@ function _asyncToGenerator(fn) {
 module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 42 */
+/* 44 */
+/*!*******************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/timeFormat.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// padStart 的 polyfill，因为某些机型或情况，还无法支持es7的padStart，比如电脑版的微信小程序
+// 所以这里做一个兼容polyfill的兼容处理
+if (!String.prototype.padStart) {
+  // 为了方便表示这里 fillString 用了ES6 的默认参数，不影响理解
+  String.prototype.padStart = function (maxLength) {
+    var fillString = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ' ';
+    if (Object.prototype.toString.call(fillString) !== "[object String]") throw new TypeError('fillString must be String');
+    var str = this;
+    // 返回 String(str) 这里是为了使返回的值是字符串字面量，在控制台中更符合直觉
+    if (str.length >= maxLength) return String(str);
+    var fillLength = maxLength - str.length,
+      times = Math.ceil(fillLength / fillString.length);
+    while (times >>= 1) {
+      fillString += fillString;
+      if (times === 1) {
+        fillString += fillString;
+      }
+    }
+    return fillString.slice(0, fillLength) + str;
+  };
+}
+
+// 其他更多是格式化有如下:
+// yyyy:mm:dd|yyyy:mm|yyyy年mm月dd日|yyyy年mm月dd日 hh时MM分等,可自定义组合
+function timeFormat() {
+  var dateTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var fmt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy-mm-dd';
+  // 如果为null,则格式化当前时间
+  if (!dateTime) dateTime = Number(new Date());
+  // 如果dateTime长度为10或者13，则为秒和毫秒的时间戳，如果超过13位，则为其他的时间格式
+  if (dateTime.toString().length == 10) dateTime *= 1000;
+  var date = new Date(dateTime);
+  var ret;
+  var opt = {
+    "y+": date.getFullYear().toString(),
+    // 年
+    "m+": (date.getMonth() + 1).toString(),
+    // 月
+    "d+": date.getDate().toString(),
+    // 日
+    "h+": date.getHours().toString(),
+    // 时
+    "M+": date.getMinutes().toString(),
+    // 分
+    "s+": date.getSeconds().toString() // 秒
+    // 有其他格式化字符需求可以继续添加，必须转化成字符串
+  };
+
+  for (var k in opt) {
+    ret = new RegExp("(" + k + ")").exec(fmt);
+    if (ret) {
+      fmt = fmt.replace(ret[1], ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, "0"));
+    }
+    ;
+  }
+  ;
+  return fmt;
+}
+var _default = timeFormat;
+exports.default = _default;
+
+/***/ }),
+/* 45 */
+/*!*****************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/timeFrom.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _timeFormat = _interopRequireDefault(__webpack_require__(/*! ../../libs/function/timeFormat.js */ 44));
+/**
+ * 时间戳转为多久之前
+ * @param String timestamp 时间戳
+ * @param String | Boolean format 如果为时间格式字符串，超出一定时间范围，返回固定的时间格式；
+ * 如果为布尔值false，无论什么时间，都返回多久以前的格式
+ */
+function timeFrom() {
+  var dateTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy-mm-dd';
+  // 如果为null,则格式化当前时间
+  if (!dateTime) dateTime = Number(new Date());
+  // 如果dateTime长度为10或者13，则为秒和毫秒的时间戳，如果超过13位，则为其他的时间格式
+  if (dateTime.toString().length == 10) dateTime *= 1000;
+  var timestamp = +new Date(Number(dateTime));
+  var timer = (Number(new Date()) - timestamp) / 1000;
+  // 如果小于5分钟,则返回"刚刚",其他以此类推
+  var tips = '';
+  switch (true) {
+    case timer < 300:
+      tips = '刚刚';
+      break;
+    case timer >= 300 && timer < 3600:
+      tips = parseInt(timer / 60) + '分钟前';
+      break;
+    case timer >= 3600 && timer < 86400:
+      tips = parseInt(timer / 3600) + '小时前';
+      break;
+    case timer >= 86400 && timer < 2592000:
+      tips = parseInt(timer / 86400) + '天前';
+      break;
+    default:
+      // 如果format为false，则无论什么时间戳，都显示xx之前
+      if (format === false) {
+        if (timer >= 2592000 && timer < 365 * 86400) {
+          tips = parseInt(timer / (86400 * 30)) + '个月前';
+        } else {
+          tips = parseInt(timer / (86400 * 365)) + '年前';
+        }
+      } else {
+        tips = (0, _timeFormat.default)(timestamp, format);
+      }
+  }
+  return tips;
+}
+var _default = timeFrom;
+exports.default = _default;
+
+/***/ }),
+/* 46 */
+/*!**********************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/colorGradient.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+/**
+ * 求两个颜色之间的渐变值
+ * @param {string} startColor 开始的颜色
+ * @param {string} endColor 结束的颜色
+ * @param {number} step 颜色等分的份额
+ * */
+function colorGradient() {
+  var startColor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'rgb(0, 0, 0)';
+  var endColor = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'rgb(255, 255, 255)';
+  var step = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 10;
+  var startRGB = hexToRgb(startColor, false); //转换为rgb数组模式
+  var startR = startRGB[0];
+  var startG = startRGB[1];
+  var startB = startRGB[2];
+  var endRGB = hexToRgb(endColor, false);
+  var endR = endRGB[0];
+  var endG = endRGB[1];
+  var endB = endRGB[2];
+  var sR = (endR - startR) / step; //总差值
+  var sG = (endG - startG) / step;
+  var sB = (endB - startB) / step;
+  var colorArr = [];
+  for (var i = 0; i < step; i++) {
+    //计算每一步的hex值 
+    var hex = rgbToHex('rgb(' + Math.round(sR * i + startR) + ',' + Math.round(sG * i + startG) + ',' + Math.round(sB * i + startB) + ')');
+    colorArr.push(hex);
+  }
+  return colorArr;
+}
+
+// 将hex表示方式转换为rgb表示方式(这里返回rgb数组模式)
+function hexToRgb(sColor) {
+  var str = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+  sColor = sColor.toLowerCase();
+  if (sColor && reg.test(sColor)) {
+    if (sColor.length === 4) {
+      var sColorNew = "#";
+      for (var i = 1; i < 4; i += 1) {
+        sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+      }
+      sColor = sColorNew;
+    }
+    //处理六位的颜色值
+    var sColorChange = [];
+    for (var _i = 1; _i < 7; _i += 2) {
+      sColorChange.push(parseInt("0x" + sColor.slice(_i, _i + 2)));
+    }
+    if (!str) {
+      return sColorChange;
+    } else {
+      return "rgb(".concat(sColorChange[0], ",").concat(sColorChange[1], ",").concat(sColorChange[2], ")");
+    }
+  } else if (/^(rgb|RGB)/.test(sColor)) {
+    var arr = sColor.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
+    return arr.map(function (val) {
+      return Number(val);
+    });
+  } else {
+    return sColor;
+  }
+}
+;
+
+// 将rgb表示方式转换为hex表示方式
+function rgbToHex(rgb) {
+  var _this = rgb;
+  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+  if (/^(rgb|RGB)/.test(_this)) {
+    var aColor = _this.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
+    var strHex = "#";
+    for (var i = 0; i < aColor.length; i++) {
+      var hex = Number(aColor[i]).toString(16);
+      hex = String(hex).length == 1 ? 0 + '' + hex : hex; // 保证每个rgb的值为2位
+      if (hex === "0") {
+        hex += hex;
+      }
+      strHex += hex;
+    }
+    if (strHex.length !== 7) {
+      strHex = _this;
+    }
+    return strHex;
+  } else if (reg.test(_this)) {
+    var aNum = _this.replace(/#/, "").split("");
+    if (aNum.length === 6) {
+      return _this;
+    } else if (aNum.length === 3) {
+      var numHex = "#";
+      for (var _i2 = 0; _i2 < aNum.length; _i2 += 1) {
+        numHex += aNum[_i2] + aNum[_i2];
+      }
+      return numHex;
+    }
+  } else {
+    return _this;
+  }
+}
+
+/**
+* JS颜色十六进制转换为rgb或rgba,返回的格式为 rgba（255，255，255，0.5）字符串
+* sHex为传入的十六进制的色值
+* alpha为rgba的透明度
+*/
+function colorToRgba(color) {
+  var alpha = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.3;
+  color = rgbToHex(color);
+  // 十六进制颜色值的正则表达式
+  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+  /* 16进制颜色转为RGB格式 */
+  var sColor = color.toLowerCase();
+  if (sColor && reg.test(sColor)) {
+    if (sColor.length === 4) {
+      var sColorNew = '#';
+      for (var i = 1; i < 4; i += 1) {
+        sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+      }
+      sColor = sColorNew;
+    }
+    // 处理六位的颜色值
+    var sColorChange = [];
+    for (var _i3 = 1; _i3 < 7; _i3 += 2) {
+      sColorChange.push(parseInt('0x' + sColor.slice(_i3, _i3 + 2)));
+    }
+    // return sColorChange.join(',')
+    return 'rgba(' + sColorChange.join(',') + ',' + alpha + ')';
+  } else {
+    return sColor;
+  }
+}
+var _default = {
+  colorGradient: colorGradient,
+  hexToRgb: hexToRgb,
+  rgbToHex: rgbToHex,
+  colorToRgba: colorToRgba
+};
+exports.default = _default;
+
+/***/ }),
+/* 47 */
+/*!*************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/guid.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+/**
+ * 本算法来源于简书开源代码，详见：https://www.jianshu.com/p/fdbf293d0a85
+ * 全局唯一标识符（uuid，Globally Unique Identifier）,也称作 uuid(Universally Unique IDentifier) 
+ * 一般用于多个组件之间,给它一个唯一的标识符,或者v-for循环的时候,如果使用数组的index可能会导致更新列表出现问题
+ * 最可能的情况是左滑删除item或者对某条信息流"不喜欢"并去掉它的时候,会导致组件内的数据可能出现错乱
+ * v-for的时候,推荐使用后端返回的id而不是循环的index
+ * @param {Number} len uuid的长度
+ * @param {Boolean} firstU 将返回的首字母置为"u"
+ * @param {Number} radix 生成uuid的基数(意味着返回的字符串都是这个基数),2-二进制,8-八进制,10-十进制,16-十六进制
+ */
+function guid() {
+  var len = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 32;
+  var firstU = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  var radix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+  var uuid = [];
+  radix = radix || chars.length;
+  if (len) {
+    // 如果指定uuid长度,只是取随机的字符,0|x为位运算,能去掉x的小数位,返回整数位
+    for (var i = 0; i < len; i++) {
+      uuid[i] = chars[0 | Math.random() * radix];
+    }
+  } else {
+    var r;
+    // rfc4122标准要求返回的uuid中,某些位为固定的字符
+    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+    uuid[14] = '4';
+    for (var _i = 0; _i < 36; _i++) {
+      if (!uuid[_i]) {
+        r = 0 | Math.random() * 16;
+        uuid[_i] = chars[_i == 19 ? r & 0x3 | 0x8 : r];
+      }
+    }
+  }
+  // 移除第一个字符,并用u替代,因为第一个字符为数值时,该guid不能用作id或者class
+  if (firstU) {
+    uuid.shift();
+    return 'u' + uuid.join('');
+  } else {
+    return uuid.join('');
+  }
+}
+var _default = guid;
+exports.default = _default;
+
+/***/ }),
+/* 48 */
+/*!**************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/color.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// 为了让用户能够自定义主题，会逐步弃用此文件，各颜色通过css提供
+// 为了给某些特殊场景使用和向后兼容，无需删除此文件(2020-06-20)
+var color = {
+  primary: "#2979ff",
+  primaryDark: "#2b85e4",
+  primaryDisabled: "#a0cfff",
+  primaryLight: "#ecf5ff",
+  bgColor: "#f3f4f6",
+  info: "#909399",
+  infoDark: "#82848a",
+  infoDisabled: "#c8c9cc",
+  infoLight: "#f4f4f5",
+  warning: "#ff9900",
+  warningDark: "#f29100",
+  warningDisabled: "#fcbd71",
+  warningLight: "#fdf6ec",
+  error: "#fa3534",
+  errorDark: "#dd6161",
+  errorDisabled: "#fab6b6",
+  errorLight: "#fef0f0",
+  success: "#19be6b",
+  successDark: "#18b566",
+  successDisabled: "#71d5a1",
+  successLight: "#dbf1e1",
+  mainColor: "#303133",
+  contentColor: "#606266",
+  tipsColor: "#909399",
+  lightColor: "#c0c4cc",
+  borderColor: "#e4e7ed"
+};
+var _default = color;
+exports.default = _default;
+
+/***/ }),
+/* 49 */
+/*!******************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/type2icon.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+/**
+ * 根据主题type值,获取对应的图标
+ * @param String type 主题名称,primary|info|error|warning|success
+ * @param String fill 是否使用fill填充实体的图标  
+ */
+function type2icon() {
+  var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'success';
+  var fill = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  // 如果非预置值,默认为success
+  if (['primary', 'info', 'error', 'warning', 'success'].indexOf(type) == -1) type = 'success';
+  var iconName = '';
+  // 目前(2019-12-12),info和primary使用同一个图标
+  switch (type) {
+    case 'primary':
+      iconName = 'info-circle';
+      break;
+    case 'info':
+      iconName = 'info-circle';
+      break;
+    case 'error':
+      iconName = 'close-circle';
+      break;
+    case 'warning':
+      iconName = 'error-circle';
+      break;
+    case 'success':
+      iconName = 'checkmark-circle';
+      break;
+    default:
+      iconName = 'checkmark-circle';
+  }
+  // 是否是实体类型,加上-fill,在icon组件库中,实体的类名是后面加-fill的
+  if (fill) iconName += '-fill';
+  return iconName;
+}
+var _default = type2icon;
+exports.default = _default;
+
+/***/ }),
+/* 50 */
+/*!********************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/randomArray.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// 打乱数组
+function randomArray() {
+  var array = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  // 原理是sort排序,Math.random()产生0<= x < 1之间的数,会导致x-0.05大于或者小于0
+  return array.sort(function () {
+    return Math.random() - 0.5;
+  });
+}
+var _default = randomArray;
+exports.default = _default;
+
+/***/ }),
+/* 51 */
+/*!****************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/addUnit.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = addUnit;
+var _test = _interopRequireDefault(__webpack_require__(/*! ./test.js */ 38));
+// 添加单位，如果有rpx，%，px等单位结尾或者值为auto，直接返回，否则加上rpx单位结尾
+function addUnit() {
+  var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'auto';
+  var unit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'rpx';
+  value = String(value);
+  // 用uView内置验证规则中的number判断是否为数值
+  return _test.default.number(value) ? "".concat(value).concat(unit) : value;
+}
+
+/***/ }),
+/* 52 */
+/*!***************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/random.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+function random(min, max) {
+  if (min >= 0 && max > 0 && max >= min) {
+    var gab = max - min + 1;
+    return Math.floor(Math.random() * gab + min);
+  } else {
+    return 0;
+  }
+}
+var _default = random;
+exports.default = _default;
+
+/***/ }),
+/* 53 */
+/*!*************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/trim.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+function trim(str) {
+  var pos = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'both';
+  if (pos == 'both') {
+    return str.replace(/^\s+|\s+$/g, "");
+  } else if (pos == "left") {
+    return str.replace(/^\s*/, '');
+  } else if (pos == 'right') {
+    return str.replace(/(\s*$)/g, "");
+  } else if (pos == 'all') {
+    return str.replace(/\s+/g, "");
+  } else {
+    return str;
+  }
+}
+var _default = trim;
+exports.default = _default;
+
+/***/ }),
+/* 54 */
+/*!**************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/toast.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+function toast(title) {
+  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
+  uni.showToast({
+    title: title,
+    icon: 'none',
+    duration: duration
+  });
+}
+var _default = toast;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+/* 55 */
+/*!******************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/getParent.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getParent;
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+// 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
+// this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
+function getParent(name, keys) {
+  var parent = this.$parent;
+  // 通过while历遍，这里主要是为了H5需要多层解析的问题
+  while (parent) {
+    // 父组件
+    if (parent.$options.name !== name) {
+      // 如果组件的name不相等，继续上一级寻找
+      parent = parent.$parent;
+    } else {
+      var _ret = function () {
+        var data = {};
+        // 判断keys是否数组，如果传过来的是一个数组，那么直接使用数组元素值当做键值去父组件寻找
+        if (Array.isArray(keys)) {
+          keys.map(function (val) {
+            data[val] = parent[val] ? parent[val] : '';
+          });
+        } else {
+          // 历遍传过来的对象参数
+          for (var i in keys) {
+            // 如果子组件有此值则用，无此值则用父组件的值
+            // 判断是否空数组，如果是，则用父组件的值，否则用子组件的值
+            if (Array.isArray(keys[i])) {
+              if (keys[i].length) {
+                data[i] = keys[i];
+              } else {
+                data[i] = parent[i];
+              }
+            } else if (keys[i].constructor === Object) {
+              // 判断是否对象，如果是对象，且有属性，那么使用子组件的值，否则使用父组件的值
+              if (Object.keys(keys[i]).length) {
+                data[i] = keys[i];
+              } else {
+                data[i] = parent[i];
+              }
+            } else {
+              // 只要子组件有传值，即使是false值，也是“传值”了，也需要覆盖父组件的同名参数
+              data[i] = keys[i] || keys[i] === false ? keys[i] : parent[i];
+            }
+          }
+        }
+        return {
+          v: data
+        };
+      }();
+      if ((0, _typeof2.default)(_ret) === "object") return _ret.v;
+    }
+  }
+  return {};
+}
+
+/***/ }),
+/* 56 */
+/*!****************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/$parent.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = $parent;
+// 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
+// this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
+// 这里默认值等于undefined有它的含义，因为最顶层元素(组件)的$parent就是undefined，意味着不传name
+// 值(默认为undefined)，就是查找最顶层的$parent
+function $parent() {
+  var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+  var parent = this.$parent;
+  // 通过while历遍，这里主要是为了H5需要多层解析的问题
+  while (parent) {
+    // 父组件
+    if (parent.$options && parent.$options.name !== name) {
+      // 如果组件的name不相等，继续上一级寻找
+      parent = parent.$parent;
+    } else {
+      return parent;
+    }
+  }
+  return false;
+}
+
+/***/ }),
+/* 57 */
+/*!************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/sys.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.os = os;
+exports.sys = sys;
+function os() {
+  return uni.getSystemInfoSync().platform;
+}
+;
+function sys() {
+  return uni.getSystemInfoSync();
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+/* 58 */
+/*!*****************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/debounce.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var timeout = null;
+
+/**
+ * 防抖原理：一定时间内，只有最后一次操作，再过wait毫秒后才执行函数
+ * 
+ * @param {Function} func 要执行的回调函数 
+ * @param {Number} wait 延时的时间
+ * @param {Boolean} immediate 是否立即执行 
+ * @return null
+ */
+function debounce(func) {
+  var wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+  var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  // 清除定时器
+  if (timeout !== null) clearTimeout(timeout);
+  // 立即执行，此类情况一般用不到
+  if (immediate) {
+    var callNow = !timeout;
+    timeout = setTimeout(function () {
+      timeout = null;
+    }, wait);
+    if (callNow) typeof func === 'function' && func();
+  } else {
+    // 设置定时器，当最后一次操作后，timeout不会再被清除，所以在延时wait毫秒后执行func回调方法
+    timeout = setTimeout(function () {
+      typeof func === 'function' && func();
+    }, wait);
+  }
+}
+var _default = debounce;
+exports.default = _default;
+
+/***/ }),
+/* 59 */
+/*!*****************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/function/throttle.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var timer, flag;
+/**
+ * 节流原理：在一定时间内，只能触发一次
+ * 
+ * @param {Function} func 要执行的回调函数 
+ * @param {Number} wait 延时的时间
+ * @param {Boolean} immediate 是否立即执行
+ * @return null
+ */
+function throttle(func) {
+  var wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+  var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+  if (immediate) {
+    if (!flag) {
+      flag = true;
+      // 如果是立即执行，则在wait毫秒内开始时执行
+      typeof func === 'function' && func();
+      timer = setTimeout(function () {
+        flag = false;
+      }, wait);
+    }
+  } else {
+    if (!flag) {
+      flag = true;
+      // 如果是非立即执行，则在wait毫秒内的结束处执行
+      timer = setTimeout(function () {
+        flag = false;
+        typeof func === 'function' && func();
+      }, wait);
+    }
+  }
+}
+;
+var _default = throttle;
+exports.default = _default;
+
+/***/ }),
+/* 60 */
+/*!*************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/config/config.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// 此版本发布于2023-03-27
+var version = '1.8.8';
+var _default = {
+  v: version,
+  version: version,
+  // 主题名称
+  type: ['primary', 'success', 'info', 'error', 'warning']
+};
+exports.default = _default;
+
+/***/ }),
+/* 61 */
+/*!*************************************************!*\
+  !*** E:/y/lanya/uview-ui/libs/config/zIndex.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// uniapp在H5中各API的z-index值如下：
+/**
+ * actionsheet: 999
+ * modal: 999
+ * navigate: 998
+ * tabbar: 998
+ * toast: 999
+ */
+var _default = {
+  toast: 10090,
+  noNetwork: 10080,
+  // popup包含popup，actionsheet，keyboard，picker的值
+  popup: 10075,
+  mask: 10070,
+  navbar: 980,
+  topTips: 975,
+  sticky: 970,
+  indexListSticky: 965
+};
+exports.default = _default;
+
+/***/ }),
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */
 /*!******************************************!*\
   !*** E:/y/lanya/utils/qqmap-wx-jssdk.js ***!
   \******************************************/
@@ -10468,7 +12391,7 @@ module.exports = QQMapWX;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
 
 /***/ }),
-/* 43 */
+/* 69 */
 /*!***************************************!*\
   !*** E:/y/lanya/static/img/lanya.jpg ***!
   \***************************************/
@@ -10478,7 +12401,7 @@ module.exports = QQMapWX;
 module.exports = "data:image/jpeg;base64,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"
 
 /***/ }),
-/* 44 */
+/* 70 */
 /*!*********************************************!*\
   !*** E:/y/lanya/static/img/getLocation.png ***!
   \*********************************************/
@@ -10488,37 +12411,7 @@ module.exports = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgA
 module.exports = "data:image/png;base64,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"
 
 /***/ }),
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */
-/*!***************************************!*\
-  !*** E:/y/lanya/static/img/goods.jpg ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/static/img/goods.jpg";
-
-/***/ }),
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */
+/* 71 */
 /*!*************************************!*\
   !*** E:/y/lanya/static/img/wmd.png ***!
   \*************************************/
@@ -10528,11 +12421,6 @@ module.exports = "/static/img/goods.jpg";
 module.exports = "data:image/png;base64,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"
 
 /***/ }),
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
 /* 72 */,
 /* 73 */,
 /* 74 */,
@@ -10541,1938 +12429,14 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIMAAACCCAYAAABl
 /* 77 */,
 /* 78 */,
 /* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */
-/*!************************************!*\
-  !*** E:/y/lanya/uview-ui/index.js ***!
-  \************************************/
+/* 80 */
+/*!***************************************!*\
+  !*** E:/y/lanya/static/img/goods.jpg ***!
+  \***************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _mixin = _interopRequireDefault(__webpack_require__(/*! ./libs/mixin/mixin.js */ 92));
-var _request = _interopRequireDefault(__webpack_require__(/*! ./libs/request */ 93));
-var _queryParams = _interopRequireDefault(__webpack_require__(/*! ./libs/function/queryParams.js */ 97));
-var _route = _interopRequireDefault(__webpack_require__(/*! ./libs/function/route.js */ 98));
-var _timeFormat = _interopRequireDefault(__webpack_require__(/*! ./libs/function/timeFormat.js */ 99));
-var _timeFrom = _interopRequireDefault(__webpack_require__(/*! ./libs/function/timeFrom.js */ 100));
-var _colorGradient = _interopRequireDefault(__webpack_require__(/*! ./libs/function/colorGradient.js */ 101));
-var _guid = _interopRequireDefault(__webpack_require__(/*! ./libs/function/guid.js */ 102));
-var _color = _interopRequireDefault(__webpack_require__(/*! ./libs/function/color.js */ 103));
-var _type2icon = _interopRequireDefault(__webpack_require__(/*! ./libs/function/type2icon.js */ 104));
-var _randomArray = _interopRequireDefault(__webpack_require__(/*! ./libs/function/randomArray.js */ 105));
-var _deepClone = _interopRequireDefault(__webpack_require__(/*! ./libs/function/deepClone.js */ 95));
-var _deepMerge = _interopRequireDefault(__webpack_require__(/*! ./libs/function/deepMerge.js */ 94));
-var _addUnit = _interopRequireDefault(__webpack_require__(/*! ./libs/function/addUnit.js */ 106));
-var _test = _interopRequireDefault(__webpack_require__(/*! ./libs/function/test.js */ 96));
-var _random = _interopRequireDefault(__webpack_require__(/*! ./libs/function/random.js */ 107));
-var _trim = _interopRequireDefault(__webpack_require__(/*! ./libs/function/trim.js */ 108));
-var _toast = _interopRequireDefault(__webpack_require__(/*! ./libs/function/toast.js */ 109));
-var _getParent = _interopRequireDefault(__webpack_require__(/*! ./libs/function/getParent.js */ 110));
-var _$parent = _interopRequireDefault(__webpack_require__(/*! ./libs/function/$parent.js */ 111));
-var _sys = __webpack_require__(/*! ./libs/function/sys.js */ 112);
-var _debounce = _interopRequireDefault(__webpack_require__(/*! ./libs/function/debounce.js */ 113));
-var _throttle = _interopRequireDefault(__webpack_require__(/*! ./libs/function/throttle.js */ 114));
-var _config = _interopRequireDefault(__webpack_require__(/*! ./libs/config/config.js */ 115));
-var _zIndex = _interopRequireDefault(__webpack_require__(/*! ./libs/config/zIndex.js */ 116));
-// 引入全局mixin
-
-// 引入关于是否mixin集成小程序分享的配置
-// import wxshare from './libs/mixin/mpShare.js'
-// 全局挂载引入http相关请求拦截插件
-
-function wranning(str) {
-  // 开发环境进行信息输出,主要是一些报错信息
-  // 这个环境的来由是在程序编写时候,点击hx编辑器运行调试代码的时候,详见:
-  // 	https://uniapp.dcloud.io/frame?id=%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e5%92%8c%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83
-  if (true) {
-    console.warn(str);
-  }
-}
-
-// 尝试判断在根目录的/store中是否有$u.mixin.js，此文件uView默认为需要挂在到全局的vuex的state变量
-// HX2.6.11版本,放到try中,控制台依然会警告,暂时不用此方式，
-// let vuexStore = {};
-// try {
-// 	vuexStore = require("@/store/$u.mixin.js");
-// } catch (e) {
-// 	//TODO handle the exception
-// }
-
-// post类型对象参数转为get类型url参数
-
-var $u = {
-  queryParams: _queryParams.default,
-  route: _route.default,
-  timeFormat: _timeFormat.default,
-  date: _timeFormat.default,
-  // 另名date
-  timeFrom: _timeFrom.default,
-  colorGradient: _colorGradient.default.colorGradient,
-  colorToRgba: _colorGradient.default.colorToRgba,
-  guid: _guid.default,
-  color: _color.default,
-  sys: _sys.sys,
-  os: _sys.os,
-  type2icon: _type2icon.default,
-  randomArray: _randomArray.default,
-  wranning: wranning,
-  get: _request.default.get,
-  post: _request.default.post,
-  put: _request.default.put,
-  'delete': _request.default.delete,
-  hexToRgb: _colorGradient.default.hexToRgb,
-  rgbToHex: _colorGradient.default.rgbToHex,
-  test: _test.default,
-  random: _random.default,
-  deepClone: _deepClone.default,
-  deepMerge: _deepMerge.default,
-  getParent: _getParent.default,
-  $parent: _$parent.default,
-  addUnit: _addUnit.default,
-  trim: _trim.default,
-  type: ['primary', 'success', 'error', 'warning', 'info'],
-  http: _request.default,
-  toast: _toast.default,
-  config: _config.default,
-  // uView配置信息相关，比如版本号
-  zIndex: _zIndex.default,
-  debounce: _debounce.default,
-  throttle: _throttle.default
-};
-
-// $u挂载到uni对象上
-uni.$u = $u;
-var install = function install(Vue) {
-  Vue.mixin(_mixin.default);
-  if (Vue.prototype.openShare) {
-    Vue.mixin(mpShare);
-  }
-  // Vue.mixin(vuexStore);
-  // 时间格式化，同时两个名称，date和timeFormat
-  Vue.filter('timeFormat', function (timestamp, format) {
-    return (0, _timeFormat.default)(timestamp, format);
-  });
-  Vue.filter('date', function (timestamp, format) {
-    return (0, _timeFormat.default)(timestamp, format);
-  });
-  // 将多久以前的方法，注入到全局过滤器
-  Vue.filter('timeFrom', function (timestamp, format) {
-    return (0, _timeFrom.default)(timestamp, format);
-  });
-  Vue.prototype.$u = $u;
-};
-var _default = {
-  install: install
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-/* 92 */
-/*!***********************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/mixin/mixin.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(uni) {module.exports = {
-  data: function data() {
-    return {};
-  },
-  onLoad: function onLoad() {
-    // getRect挂载到$u上，因为这方法需要使用in(this)，所以无法把它独立成一个单独的文件导出
-    this.$u.getRect = this.$uGetRect;
-  },
-  methods: {
-    // 查询节点信息
-    // 目前此方法在支付宝小程序中无法获取组件跟接点的尺寸，为支付宝的bug(2020-07-21)
-    // 解决办法为在组件根部再套一个没有任何作用的view元素
-    $uGetRect: function $uGetRect(selector, all) {
-      var _this = this;
-      return new Promise(function (resolve) {
-        uni.createSelectorQuery().in(_this)[all ? 'selectAll' : 'select'](selector).boundingClientRect(function (rect) {
-          if (all && Array.isArray(rect) && rect.length) {
-            resolve(rect);
-          }
-          if (!all && rect) {
-            resolve(rect);
-          }
-        }).exec();
-      });
-    },
-    getParentData: function getParentData() {
-      var _this2 = this;
-      var parentName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-      // 避免在created中去定义parent变量
-      if (!this.parent) this.parent = false;
-      // 这里的本质原理是，通过获取父组件实例(也即u-radio-group的this)
-      // 将父组件this中对应的参数，赋值给本组件(u-radio的this)的parentData对象中对应的属性
-      // 之所以需要这么做，是因为所有端中，头条小程序不支持通过this.parent.xxx去监听父组件参数的变化
-      this.parent = this.$u.$parent.call(this, parentName);
-      if (this.parent) {
-        // 历遍parentData中的属性，将parent中的同名属性赋值给parentData
-        Object.keys(this.parentData).map(function (key) {
-          _this2.parentData[key] = _this2.parent[key];
-        });
-      }
-    },
-    // 阻止事件冒泡
-    preventEvent: function preventEvent(e) {
-      e && e.stopPropagation && e.stopPropagation();
-    }
-  },
-  onReachBottom: function onReachBottom() {
-    uni.$emit('uOnReachBottom');
-  },
-  beforeDestroy: function beforeDestroy() {
-    var _this3 = this;
-    // 判断当前页面是否存在parent和children，一般在checkbox和checkbox-group父子联动的场景会有此情况
-    // 组件销毁时，移除子组件在父组件children数组中的实例，释放资源，避免数据混乱
-    if (this.parent && uni.$u.test.array(this.parent.children)) {
-      // 组件销毁时，移除父组件中的children数组中对应的实例
-      var childrenList = this.parent.children;
-      childrenList.map(function (child, index) {
-        // 如果相等，则移除
-        if (child === _this3) {
-          childrenList.splice(index, 1);
-        }
-      });
-    }
-  }
-};
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-/* 93 */
-/*!*************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/request/index.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _deepMerge = _interopRequireDefault(__webpack_require__(/*! ../function/deepMerge */ 94));
-var _test = _interopRequireDefault(__webpack_require__(/*! ../function/test */ 96));
-var Request = /*#__PURE__*/function () {
-  function Request() {
-    var _this = this;
-    (0, _classCallCheck2.default)(this, Request);
-    this.config = {
-      baseUrl: '',
-      // 请求的根域名
-      // 默认的请求头
-      header: {},
-      method: 'POST',
-      // 设置为json，返回后uni.request会对数据进行一次JSON.parse
-      dataType: 'json',
-      // 此参数无需处理，因为5+和支付宝小程序不支持，默认为text即可
-      responseType: 'text',
-      showLoading: true,
-      // 是否显示请求中的loading
-      loadingText: '请求中...',
-      loadingTime: 800,
-      // 在此时间内，请求还没回来的话，就显示加载中动画，单位ms
-      timer: null,
-      // 定时器
-      originalData: false,
-      // 是否在拦截器中返回服务端的原始数据，见文档说明
-      loadingMask: true // 展示loading的时候，是否给一个透明的蒙层，防止触摸穿透
-    };
-
-    // 拦截器
-    this.interceptor = {
-      // 请求前的拦截
-      request: null,
-      // 请求后的拦截
-      response: null
-    };
-
-    // get请求
-    this.get = function (url) {
-      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-      return _this.request({
-        method: 'GET',
-        url: url,
-        header: header,
-        data: data
-      });
-    };
-
-    // post请求
-    this.post = function (url) {
-      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-      return _this.request({
-        url: url,
-        method: 'POST',
-        header: header,
-        data: data
-      });
-    };
-
-    // put请求，不支持支付宝小程序(HX2.6.15)
-    this.put = function (url) {
-      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-      return _this.request({
-        url: url,
-        method: 'PUT',
-        header: header,
-        data: data
-      });
-    };
-
-    // delete请求，不支持支付宝和头条小程序(HX2.6.15)
-    this.delete = function (url) {
-      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-      return _this.request({
-        url: url,
-        method: 'DELETE',
-        header: header,
-        data: data
-      });
-    };
-  }
-  (0, _createClass2.default)(Request, [{
-    key: "setConfig",
-    value:
-    // 设置全局默认配置
-    function setConfig(customConfig) {
-      // 深度合并对象，否则会造成对象深层属性丢失
-      this.config = (0, _deepMerge.default)(this.config, customConfig);
-    }
-
-    // 主要请求部分
-  }, {
-    key: "request",
-    value: function request() {
-      var _this2 = this;
-      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      // 检查请求拦截
-      if (this.interceptor.request && typeof this.interceptor.request === 'function') {
-        var tmpConfig = {};
-        var interceptorRequest = this.interceptor.request(options);
-        if (interceptorRequest === false) {
-          // 返回一个处于pending状态中的Promise，来取消原promise，避免进入then()回调
-          return new Promise(function () {});
-        }
-        this.options = interceptorRequest;
-      }
-      options.dataType = options.dataType || this.config.dataType;
-      options.responseType = options.responseType || this.config.responseType;
-      options.url = options.url || '';
-      options.params = options.params || {};
-      options.header = Object.assign({}, this.config.header, options.header);
-      options.method = options.method || this.config.method;
-      return new Promise(function (resolve, reject) {
-        options.complete = function (response) {
-          // 请求返回后，隐藏loading(如果请求返回快的话，可能会没有loading)
-          uni.hideLoading();
-          // 清除定时器，如果请求回来了，就无需loading
-          clearTimeout(_this2.config.timer);
-          _this2.config.timer = null;
-          // 判断用户对拦截返回数据的要求，如果originalData为true，返回所有的数据(response)到拦截器，否则只返回response.data
-          if (_this2.config.originalData) {
-            // 判断是否存在拦截器
-            if (_this2.interceptor.response && typeof _this2.interceptor.response === 'function') {
-              var resInterceptors = _this2.interceptor.response(response);
-              // 如果拦截器不返回false，就将拦截器返回的内容给this.$u.post的then回调
-              if (resInterceptors !== false) {
-                resolve(resInterceptors);
-              } else {
-                // 如果拦截器返回false，意味着拦截器定义者认为返回有问题，直接接入catch回调
-                reject(response);
-              }
-            } else {
-              // 如果要求返回原始数据，就算没有拦截器，也返回最原始的数据
-              resolve(response);
-            }
-          } else {
-            if (response.statusCode == 200) {
-              if (_this2.interceptor.response && typeof _this2.interceptor.response === 'function') {
-                var _resInterceptors = _this2.interceptor.response(response.data);
-                if (_resInterceptors !== false) {
-                  resolve(_resInterceptors);
-                } else {
-                  reject(response.data);
-                }
-              } else {
-                // 如果不是返回原始数据(originalData=false)，且没有拦截器的情况下，返回纯数据给then回调
-                resolve(response.data);
-              }
-            } else {
-              // 不返回原始数据的情况下，服务器状态码不为200，modal弹框提示
-              // if(response.errMsg) {
-              // 	uni.showModal({
-              // 		title: response.errMsg
-              // 	});
-              // }
-              reject(response);
-            }
-          }
-        };
-
-        // 判断用户传递的URL是否/开头,如果不是,加上/，这里使用了uView的test.js验证库的url()方法
-        options.url = _test.default.url(options.url) ? options.url : _this2.config.baseUrl + (options.url.indexOf('/') == 0 ? options.url : '/' + options.url);
-
-        // 是否显示loading
-        // 加一个是否已有timer定时器的判断，否则有两个同时请求的时候，后者会清除前者的定时器id
-        // 而没有清除前者的定时器，导致前者超时，一直显示loading
-        if (_this2.config.showLoading && !_this2.config.timer) {
-          _this2.config.timer = setTimeout(function () {
-            uni.showLoading({
-              title: _this2.config.loadingText,
-              mask: _this2.config.loadingMask
-            });
-            _this2.config.timer = null;
-          }, _this2.config.loadingTime);
-        }
-        uni.request(options);
-      });
-      // .catch(res => {
-      // 	// 如果返回reject()，不让其进入this.$u.post().then().catch()后面的catct()
-      // 	// 因为很多人都会忘了写后面的catch()，导致报错捕获不到catch
-      // 	return new Promise(()=>{});
-      // })
-    }
-  }]);
-  return Request;
-}();
-var _default = new Request();
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-/* 94 */
-/*!******************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/deepMerge.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-var _deepClone = _interopRequireDefault(__webpack_require__(/*! ./deepClone */ 95));
-// JS对象深度合并
-function deepMerge() {
-  var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var source = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  target = (0, _deepClone.default)(target);
-  if ((0, _typeof2.default)(target) !== 'object' || target === null || (0, _typeof2.default)(source) !== 'object' || source === null) return target;
-  var merged = Array.isArray(target) ? target.slice() : Object.assign({}, target);
-  for (var prop in source) {
-    if (!source.hasOwnProperty(prop)) continue;
-    var sourceValue = source[prop];
-    var targetValue = merged[prop];
-    if (sourceValue instanceof Date) {
-      merged[prop] = new Date(sourceValue);
-    } else if (sourceValue instanceof RegExp) {
-      merged[prop] = new RegExp(sourceValue);
-    } else if (sourceValue instanceof Map) {
-      merged[prop] = new Map(sourceValue);
-    } else if (sourceValue instanceof Set) {
-      merged[prop] = new Set(sourceValue);
-    } else if ((0, _typeof2.default)(sourceValue) === 'object' && sourceValue !== null) {
-      merged[prop] = deepMerge(targetValue, sourceValue);
-    } else {
-      merged[prop] = sourceValue;
-    }
-  }
-  return merged;
-}
-var _default = deepMerge;
-exports.default = _default;
-
-/***/ }),
-/* 95 */
-/*!******************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/deepClone.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-// 判断arr是否为一个数组，返回一个bool值
-function isArray(arr) {
-  return Object.prototype.toString.call(arr) === '[object Array]';
-}
-
-// 深度克隆
-function deepClone(obj) {
-  var cache = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new WeakMap();
-  if (obj === null || (0, _typeof2.default)(obj) !== 'object') return obj;
-  if (cache.has(obj)) return cache.get(obj);
-  var clone;
-  if (obj instanceof Date) {
-    clone = new Date(obj.getTime());
-  } else if (obj instanceof RegExp) {
-    clone = new RegExp(obj);
-  } else if (obj instanceof Map) {
-    clone = new Map(Array.from(obj, function (_ref) {
-      var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
-        key = _ref2[0],
-        value = _ref2[1];
-      return [key, deepClone(value, cache)];
-    }));
-  } else if (obj instanceof Set) {
-    clone = new Set(Array.from(obj, function (value) {
-      return deepClone(value, cache);
-    }));
-  } else if (Array.isArray(obj)) {
-    clone = obj.map(function (value) {
-      return deepClone(value, cache);
-    });
-  } else if (Object.prototype.toString.call(obj) === '[object Object]') {
-    clone = Object.create(Object.getPrototypeOf(obj));
-    cache.set(obj, clone);
-    for (var _i = 0, _Object$entries = Object.entries(obj); _i < _Object$entries.length; _i++) {
-      var _Object$entries$_i = (0, _slicedToArray2.default)(_Object$entries[_i], 2),
-        key = _Object$entries$_i[0],
-        value = _Object$entries$_i[1];
-      clone[key] = deepClone(value, cache);
-    }
-  } else {
-    clone = Object.assign({}, obj);
-  }
-  cache.set(obj, clone);
-  return clone;
-}
-var _default = deepClone;
-exports.default = _default;
-
-/***/ }),
-/* 96 */
-/*!*************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/test.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-/**
- * 验证电子邮箱格式
- */
-function email(value) {
-  return /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/.test(value);
-}
-
-/**
- * 验证手机格式
- */
-function mobile(value) {
-  return /^1[3-9]\d{9}$/.test(value);
-}
-
-/**
- * 验证URL格式
- */
-function url(value) {
-  return /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/.test(value);
-}
-
-/**
- * 验证日期格式
- */
-function date(value) {
-  return !/Invalid|NaN/.test(new Date(value).toString());
-}
-
-/**
- * 验证ISO类型的日期格式
- */
-function dateISO(value) {
-  return /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(value);
-}
-
-/**
- * 验证十进制数字
- */
-function number(value) {
-  return /^[\+-]?(\d+\.?\d*|\.\d+|\d\.\d+e\+\d+)$/.test(value);
-}
-
-/**
- * 验证整数
- */
-function digits(value) {
-  return /^\d+$/.test(value);
-}
-
-/**
- * 验证身份证号码
- */
-function idCard(value) {
-  return /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(value);
-}
-
-/**
- * 是否车牌号
- */
-function carNo(value) {
-  // 新能源车牌
-  var xreg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([0-9]{5}[DF]$)|([DF][A-HJ-NP-Z0-9][0-9]{4}$))/;
-  // 旧车牌
-  var creg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳]{1}$/;
-  if (value.length === 7) {
-    return creg.test(value);
-  } else if (value.length === 8) {
-    return xreg.test(value);
-  } else {
-    return false;
-  }
-}
-
-/**
- * 金额,只允许2位小数
- */
-function amount(value) {
-  //金额，只允许保留两位小数
-  return /^[1-9]\d*(,\d{3})*(\.\d{1,2})?$|^0\.\d{1,2}$/.test(value);
-}
-
-/**
- * 中文
- */
-function chinese(value) {
-  var reg = /^[\u4e00-\u9fa5]+$/gi;
-  return reg.test(value);
-}
-
-/**
- * 只能输入字母
- */
-function letter(value) {
-  return /^[a-zA-Z]*$/.test(value);
-}
-
-/**
- * 只能是字母或者数字
- */
-function enOrNum(value) {
-  //英文或者数字
-  var reg = /^[0-9a-zA-Z]*$/g;
-  return reg.test(value);
-}
-
-/**
- * 验证是否包含某个值
- */
-function contains(value, param) {
-  return value.indexOf(param) >= 0;
-}
-
-/**
- * 验证一个值范围[min, max]
- */
-function range(value, param) {
-  return value >= param[0] && value <= param[1];
-}
-
-/**
- * 验证一个长度范围[min, max]
- */
-function rangeLength(value, param) {
-  return value.length >= param[0] && value.length <= param[1];
-}
-
-/**
- * 是否固定电话
- */
-function landline(value) {
-  var reg = /^\d{3,4}-\d{7,8}(-\d{3,4})?$/;
-  return reg.test(value);
-}
-
-/**
- * 判断是否为空
- */
-function empty(value) {
-  switch ((0, _typeof2.default)(value)) {
-    case 'undefined':
-      return true;
-    case 'string':
-      if (value.replace(/(^[ \t\n\r]*)|([ \t\n\r]*$)/g, '').length == 0) return true;
-      break;
-    case 'boolean':
-      if (!value) return true;
-      break;
-    case 'number':
-      if (0 === value || isNaN(value)) return true;
-      break;
-    case 'object':
-      if (null === value || value.length === 0) return true;
-      for (var i in value) {
-        return false;
-      }
-      return true;
-  }
-  return false;
-}
-
-/**
- * 是否json字符串
- */
-function jsonString(value) {
-  if (typeof value == 'string') {
-    try {
-      var obj = JSON.parse(value);
-      if ((0, _typeof2.default)(obj) == 'object' && obj) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (e) {
-      return false;
-    }
-  }
-  return false;
-}
-
-/**
- * 是否数组
- */
-function array(value) {
-  if (typeof Array.isArray === "function") {
-    return Array.isArray(value);
-  } else {
-    return Object.prototype.toString.call(value) === "[object Array]";
-  }
-}
-
-/**
- * 是否对象
- */
-function object(value) {
-  return Object.prototype.toString.call(value) === '[object Object]';
-}
-
-/**
- * 是否短信验证码
- */
-function code(value) {
-  var len = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
-  return new RegExp("^\\d{".concat(len, "}$")).test(value);
-}
-var _default = {
-  email: email,
-  mobile: mobile,
-  url: url,
-  date: date,
-  dateISO: dateISO,
-  number: number,
-  digits: digits,
-  idCard: idCard,
-  carNo: carNo,
-  amount: amount,
-  chinese: chinese,
-  letter: letter,
-  enOrNum: enOrNum,
-  contains: contains,
-  range: range,
-  rangeLength: rangeLength,
-  empty: empty,
-  isEmpty: empty,
-  jsonString: jsonString,
-  landline: landline,
-  object: object,
-  array: array,
-  code: code
-};
-exports.default = _default;
-
-/***/ }),
-/* 97 */
-/*!********************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/queryParams.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/**
- * 对象转url参数
- * @param {*} data,对象
- * @param {*} isPrefix,是否自动加上"?"
- */
-function queryParams() {
-  var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var isPrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-  var arrayFormat = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'brackets';
-  var prefix = isPrefix ? '?' : '';
-  var _result = [];
-  if (['indices', 'brackets', 'repeat', 'comma'].indexOf(arrayFormat) == -1) arrayFormat = 'brackets';
-  var _loop = function _loop(key) {
-    var value = data[key];
-    // 去掉为空的参数
-    if (['', undefined, null].indexOf(value) >= 0) {
-      return "continue";
-    }
-    // 如果值为数组，另行处理
-    if (value.constructor === Array) {
-      // e.g. {ids: [1, 2, 3]}
-      switch (arrayFormat) {
-        case 'indices':
-          // 结果: ids[0]=1&ids[1]=2&ids[2]=3
-          for (var i = 0; i < value.length; i++) {
-            _result.push(key + '[' + i + ']=' + value[i]);
-          }
-          break;
-        case 'brackets':
-          // 结果: ids[]=1&ids[]=2&ids[]=3
-          value.forEach(function (_value) {
-            _result.push(key + '[]=' + _value);
-          });
-          break;
-        case 'repeat':
-          // 结果: ids=1&ids=2&ids=3
-          value.forEach(function (_value) {
-            _result.push(key + '=' + _value);
-          });
-          break;
-        case 'comma':
-          // 结果: ids=1,2,3
-          var commaStr = "";
-          value.forEach(function (_value) {
-            commaStr += (commaStr ? "," : "") + _value;
-          });
-          _result.push(key + '=' + commaStr);
-          break;
-        default:
-          value.forEach(function (_value) {
-            _result.push(key + '[]=' + _value);
-          });
-      }
-    } else {
-      _result.push(key + '=' + value);
-    }
-  };
-  for (var key in data) {
-    var _ret = _loop(key);
-    if (_ret === "continue") continue;
-  }
-  return _result.length ? prefix + _result.join('&') : '';
-}
-var _default = queryParams;
-exports.default = _default;
-
-/***/ }),
-/* 98 */
-/*!**************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/route.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 39));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 41));
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-/**
- * 路由跳转方法，该方法相对于直接使用uni.xxx的好处是使用更加简单快捷
- * 并且带有路由拦截功能
- */
-var Router = /*#__PURE__*/function () {
-  function Router() {
-    (0, _classCallCheck2.default)(this, Router);
-    // 原始属性定义
-    this.config = {
-      type: 'navigateTo',
-      url: '',
-      delta: 1,
-      // navigateBack页面后退时,回退的层数
-      params: {},
-      // 传递的参数
-      animationType: 'pop-in',
-      // 窗口动画,只在APP有效
-      animationDuration: 300,
-      // 窗口动画持续时间,单位毫秒,只在APP有效
-      intercept: false // 是否需要拦截
-    };
-    // 因为route方法是需要对外赋值给另外的对象使用，同时route内部有使用this，会导致route失去上下文
-    // 这里在构造函数中进行this绑定
-    this.route = this.route.bind(this);
-  }
-
-  // 判断url前面是否有"/"，如果没有则加上，否则无法跳转
-  (0, _createClass2.default)(Router, [{
-    key: "addRootPath",
-    value: function addRootPath(url) {
-      return url[0] === '/' ? url : "/".concat(url);
-    }
-
-    // 整合路由参数
-  }, {
-    key: "mixinParam",
-    value: function mixinParam(url, params) {
-      url = url && this.addRootPath(url);
-
-      // 使用正则匹配，主要依据是判断是否有"/","?","="等，如“/page/index/index?name=mary"
-      // 如果有url中有get参数，转换后无需带上"?"
-      var query = '';
-      if (/.*\/.*\?.*=.*/.test(url)) {
-        // object对象转为get类型的参数
-        query = uni.$u.queryParams(params, false);
-        // 因为已有get参数,所以后面拼接的参数需要带上"&"隔开
-        return url += "&" + query;
-      } else {
-        // 直接拼接参数，因为此处url中没有后面的query参数，也就没有"?/&"之类的符号
-        query = uni.$u.queryParams(params);
-        return url += query;
-      }
-    }
-
-    // 对外的方法名称
-  }, {
-    key: "route",
-    value: function () {
-      var _route = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var options,
-          params,
-          mergeConfig,
-          isNext,
-          _args = arguments;
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                options = _args.length > 0 && _args[0] !== undefined ? _args[0] : {};
-                params = _args.length > 1 && _args[1] !== undefined ? _args[1] : {};
-                // 合并用户的配置和内部的默认配置
-                mergeConfig = {};
-                if (typeof options === 'string') {
-                  // 如果options为字符串，则为route(url, params)的形式
-                  mergeConfig.url = this.mixinParam(options, params);
-                  mergeConfig.type = 'navigateTo';
-                } else {
-                  mergeConfig = uni.$u.deepMerge(this.config, options);
-                  // 否则正常使用mergeConfig中的url和params进行拼接
-                  mergeConfig.url = this.mixinParam(options.url, options.params);
-                }
-                if (params.intercept) {
-                  this.config.intercept = params.intercept;
-                }
-                // params参数也带给拦截器
-                mergeConfig.params = params;
-                // 合并内外部参数
-                mergeConfig = uni.$u.deepMerge(this.config, mergeConfig);
-                // 判断用户是否定义了拦截器
-                if (!(typeof uni.$u.routeIntercept === 'function')) {
-                  _context.next = 14;
-                  break;
-                }
-                _context.next = 10;
-                return new Promise(function (resolve, reject) {
-                  uni.$u.routeIntercept(mergeConfig, resolve);
-                });
-              case 10:
-                isNext = _context.sent;
-                // 如果isNext为true，则执行路由跳转
-                isNext && this.openPage(mergeConfig);
-                _context.next = 15;
-                break;
-              case 14:
-                this.openPage(mergeConfig);
-              case 15:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-      function route() {
-        return _route.apply(this, arguments);
-      }
-      return route;
-    }() // 执行路由跳转
-  }, {
-    key: "openPage",
-    value: function openPage(config) {
-      // 解构参数
-      var url = config.url,
-        type = config.type,
-        delta = config.delta,
-        animationType = config.animationType,
-        animationDuration = config.animationDuration;
-      if (config.type == 'navigateTo' || config.type == 'to') {
-        uni.navigateTo({
-          url: url,
-          animationType: animationType,
-          animationDuration: animationDuration
-        });
-      }
-      if (config.type == 'redirectTo' || config.type == 'redirect') {
-        uni.redirectTo({
-          url: url
-        });
-      }
-      if (config.type == 'switchTab' || config.type == 'tab') {
-        uni.switchTab({
-          url: url
-        });
-      }
-      if (config.type == 'reLaunch' || config.type == 'launch') {
-        uni.reLaunch({
-          url: url
-        });
-      }
-      if (config.type == 'navigateBack' || config.type == 'back') {
-        uni.navigateBack({
-          delta: delta
-        });
-      }
-    }
-  }]);
-  return Router;
-}();
-var _default = new Router().route;
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-/* 99 */
-/*!*******************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/timeFormat.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-// padStart 的 polyfill，因为某些机型或情况，还无法支持es7的padStart，比如电脑版的微信小程序
-// 所以这里做一个兼容polyfill的兼容处理
-if (!String.prototype.padStart) {
-  // 为了方便表示这里 fillString 用了ES6 的默认参数，不影响理解
-  String.prototype.padStart = function (maxLength) {
-    var fillString = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ' ';
-    if (Object.prototype.toString.call(fillString) !== "[object String]") throw new TypeError('fillString must be String');
-    var str = this;
-    // 返回 String(str) 这里是为了使返回的值是字符串字面量，在控制台中更符合直觉
-    if (str.length >= maxLength) return String(str);
-    var fillLength = maxLength - str.length,
-      times = Math.ceil(fillLength / fillString.length);
-    while (times >>= 1) {
-      fillString += fillString;
-      if (times === 1) {
-        fillString += fillString;
-      }
-    }
-    return fillString.slice(0, fillLength) + str;
-  };
-}
-
-// 其他更多是格式化有如下:
-// yyyy:mm:dd|yyyy:mm|yyyy年mm月dd日|yyyy年mm月dd日 hh时MM分等,可自定义组合
-function timeFormat() {
-  var dateTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var fmt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy-mm-dd';
-  // 如果为null,则格式化当前时间
-  if (!dateTime) dateTime = Number(new Date());
-  // 如果dateTime长度为10或者13，则为秒和毫秒的时间戳，如果超过13位，则为其他的时间格式
-  if (dateTime.toString().length == 10) dateTime *= 1000;
-  var date = new Date(dateTime);
-  var ret;
-  var opt = {
-    "y+": date.getFullYear().toString(),
-    // 年
-    "m+": (date.getMonth() + 1).toString(),
-    // 月
-    "d+": date.getDate().toString(),
-    // 日
-    "h+": date.getHours().toString(),
-    // 时
-    "M+": date.getMinutes().toString(),
-    // 分
-    "s+": date.getSeconds().toString() // 秒
-    // 有其他格式化字符需求可以继续添加，必须转化成字符串
-  };
-
-  for (var k in opt) {
-    ret = new RegExp("(" + k + ")").exec(fmt);
-    if (ret) {
-      fmt = fmt.replace(ret[1], ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, "0"));
-    }
-    ;
-  }
-  ;
-  return fmt;
-}
-var _default = timeFormat;
-exports.default = _default;
-
-/***/ }),
-/* 100 */
-/*!*****************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/timeFrom.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _timeFormat = _interopRequireDefault(__webpack_require__(/*! ../../libs/function/timeFormat.js */ 99));
-/**
- * 时间戳转为多久之前
- * @param String timestamp 时间戳
- * @param String | Boolean format 如果为时间格式字符串，超出一定时间范围，返回固定的时间格式；
- * 如果为布尔值false，无论什么时间，都返回多久以前的格式
- */
-function timeFrom() {
-  var dateTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy-mm-dd';
-  // 如果为null,则格式化当前时间
-  if (!dateTime) dateTime = Number(new Date());
-  // 如果dateTime长度为10或者13，则为秒和毫秒的时间戳，如果超过13位，则为其他的时间格式
-  if (dateTime.toString().length == 10) dateTime *= 1000;
-  var timestamp = +new Date(Number(dateTime));
-  var timer = (Number(new Date()) - timestamp) / 1000;
-  // 如果小于5分钟,则返回"刚刚",其他以此类推
-  var tips = '';
-  switch (true) {
-    case timer < 300:
-      tips = '刚刚';
-      break;
-    case timer >= 300 && timer < 3600:
-      tips = parseInt(timer / 60) + '分钟前';
-      break;
-    case timer >= 3600 && timer < 86400:
-      tips = parseInt(timer / 3600) + '小时前';
-      break;
-    case timer >= 86400 && timer < 2592000:
-      tips = parseInt(timer / 86400) + '天前';
-      break;
-    default:
-      // 如果format为false，则无论什么时间戳，都显示xx之前
-      if (format === false) {
-        if (timer >= 2592000 && timer < 365 * 86400) {
-          tips = parseInt(timer / (86400 * 30)) + '个月前';
-        } else {
-          tips = parseInt(timer / (86400 * 365)) + '年前';
-        }
-      } else {
-        tips = (0, _timeFormat.default)(timestamp, format);
-      }
-  }
-  return tips;
-}
-var _default = timeFrom;
-exports.default = _default;
-
-/***/ }),
-/* 101 */
-/*!**********************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/colorGradient.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/**
- * 求两个颜色之间的渐变值
- * @param {string} startColor 开始的颜色
- * @param {string} endColor 结束的颜色
- * @param {number} step 颜色等分的份额
- * */
-function colorGradient() {
-  var startColor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'rgb(0, 0, 0)';
-  var endColor = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'rgb(255, 255, 255)';
-  var step = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 10;
-  var startRGB = hexToRgb(startColor, false); //转换为rgb数组模式
-  var startR = startRGB[0];
-  var startG = startRGB[1];
-  var startB = startRGB[2];
-  var endRGB = hexToRgb(endColor, false);
-  var endR = endRGB[0];
-  var endG = endRGB[1];
-  var endB = endRGB[2];
-  var sR = (endR - startR) / step; //总差值
-  var sG = (endG - startG) / step;
-  var sB = (endB - startB) / step;
-  var colorArr = [];
-  for (var i = 0; i < step; i++) {
-    //计算每一步的hex值 
-    var hex = rgbToHex('rgb(' + Math.round(sR * i + startR) + ',' + Math.round(sG * i + startG) + ',' + Math.round(sB * i + startB) + ')');
-    colorArr.push(hex);
-  }
-  return colorArr;
-}
-
-// 将hex表示方式转换为rgb表示方式(这里返回rgb数组模式)
-function hexToRgb(sColor) {
-  var str = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
-  sColor = sColor.toLowerCase();
-  if (sColor && reg.test(sColor)) {
-    if (sColor.length === 4) {
-      var sColorNew = "#";
-      for (var i = 1; i < 4; i += 1) {
-        sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
-      }
-      sColor = sColorNew;
-    }
-    //处理六位的颜色值
-    var sColorChange = [];
-    for (var _i = 1; _i < 7; _i += 2) {
-      sColorChange.push(parseInt("0x" + sColor.slice(_i, _i + 2)));
-    }
-    if (!str) {
-      return sColorChange;
-    } else {
-      return "rgb(".concat(sColorChange[0], ",").concat(sColorChange[1], ",").concat(sColorChange[2], ")");
-    }
-  } else if (/^(rgb|RGB)/.test(sColor)) {
-    var arr = sColor.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
-    return arr.map(function (val) {
-      return Number(val);
-    });
-  } else {
-    return sColor;
-  }
-}
-;
-
-// 将rgb表示方式转换为hex表示方式
-function rgbToHex(rgb) {
-  var _this = rgb;
-  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
-  if (/^(rgb|RGB)/.test(_this)) {
-    var aColor = _this.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
-    var strHex = "#";
-    for (var i = 0; i < aColor.length; i++) {
-      var hex = Number(aColor[i]).toString(16);
-      hex = String(hex).length == 1 ? 0 + '' + hex : hex; // 保证每个rgb的值为2位
-      if (hex === "0") {
-        hex += hex;
-      }
-      strHex += hex;
-    }
-    if (strHex.length !== 7) {
-      strHex = _this;
-    }
-    return strHex;
-  } else if (reg.test(_this)) {
-    var aNum = _this.replace(/#/, "").split("");
-    if (aNum.length === 6) {
-      return _this;
-    } else if (aNum.length === 3) {
-      var numHex = "#";
-      for (var _i2 = 0; _i2 < aNum.length; _i2 += 1) {
-        numHex += aNum[_i2] + aNum[_i2];
-      }
-      return numHex;
-    }
-  } else {
-    return _this;
-  }
-}
-
-/**
-* JS颜色十六进制转换为rgb或rgba,返回的格式为 rgba（255，255，255，0.5）字符串
-* sHex为传入的十六进制的色值
-* alpha为rgba的透明度
-*/
-function colorToRgba(color) {
-  var alpha = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.3;
-  color = rgbToHex(color);
-  // 十六进制颜色值的正则表达式
-  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
-  /* 16进制颜色转为RGB格式 */
-  var sColor = color.toLowerCase();
-  if (sColor && reg.test(sColor)) {
-    if (sColor.length === 4) {
-      var sColorNew = '#';
-      for (var i = 1; i < 4; i += 1) {
-        sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
-      }
-      sColor = sColorNew;
-    }
-    // 处理六位的颜色值
-    var sColorChange = [];
-    for (var _i3 = 1; _i3 < 7; _i3 += 2) {
-      sColorChange.push(parseInt('0x' + sColor.slice(_i3, _i3 + 2)));
-    }
-    // return sColorChange.join(',')
-    return 'rgba(' + sColorChange.join(',') + ',' + alpha + ')';
-  } else {
-    return sColor;
-  }
-}
-var _default = {
-  colorGradient: colorGradient,
-  hexToRgb: hexToRgb,
-  rgbToHex: rgbToHex,
-  colorToRgba: colorToRgba
-};
-exports.default = _default;
-
-/***/ }),
-/* 102 */
-/*!*************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/guid.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/**
- * 本算法来源于简书开源代码，详见：https://www.jianshu.com/p/fdbf293d0a85
- * 全局唯一标识符（uuid，Globally Unique Identifier）,也称作 uuid(Universally Unique IDentifier) 
- * 一般用于多个组件之间,给它一个唯一的标识符,或者v-for循环的时候,如果使用数组的index可能会导致更新列表出现问题
- * 最可能的情况是左滑删除item或者对某条信息流"不喜欢"并去掉它的时候,会导致组件内的数据可能出现错乱
- * v-for的时候,推荐使用后端返回的id而不是循环的index
- * @param {Number} len uuid的长度
- * @param {Boolean} firstU 将返回的首字母置为"u"
- * @param {Number} radix 生成uuid的基数(意味着返回的字符串都是这个基数),2-二进制,8-八进制,10-十进制,16-十六进制
- */
-function guid() {
-  var len = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 32;
-  var firstU = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-  var radix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-  var uuid = [];
-  radix = radix || chars.length;
-  if (len) {
-    // 如果指定uuid长度,只是取随机的字符,0|x为位运算,能去掉x的小数位,返回整数位
-    for (var i = 0; i < len; i++) {
-      uuid[i] = chars[0 | Math.random() * radix];
-    }
-  } else {
-    var r;
-    // rfc4122标准要求返回的uuid中,某些位为固定的字符
-    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
-    uuid[14] = '4';
-    for (var _i = 0; _i < 36; _i++) {
-      if (!uuid[_i]) {
-        r = 0 | Math.random() * 16;
-        uuid[_i] = chars[_i == 19 ? r & 0x3 | 0x8 : r];
-      }
-    }
-  }
-  // 移除第一个字符,并用u替代,因为第一个字符为数值时,该guid不能用作id或者class
-  if (firstU) {
-    uuid.shift();
-    return 'u' + uuid.join('');
-  } else {
-    return uuid.join('');
-  }
-}
-var _default = guid;
-exports.default = _default;
-
-/***/ }),
-/* 103 */
-/*!**************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/color.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-// 为了让用户能够自定义主题，会逐步弃用此文件，各颜色通过css提供
-// 为了给某些特殊场景使用和向后兼容，无需删除此文件(2020-06-20)
-var color = {
-  primary: "#2979ff",
-  primaryDark: "#2b85e4",
-  primaryDisabled: "#a0cfff",
-  primaryLight: "#ecf5ff",
-  bgColor: "#f3f4f6",
-  info: "#909399",
-  infoDark: "#82848a",
-  infoDisabled: "#c8c9cc",
-  infoLight: "#f4f4f5",
-  warning: "#ff9900",
-  warningDark: "#f29100",
-  warningDisabled: "#fcbd71",
-  warningLight: "#fdf6ec",
-  error: "#fa3534",
-  errorDark: "#dd6161",
-  errorDisabled: "#fab6b6",
-  errorLight: "#fef0f0",
-  success: "#19be6b",
-  successDark: "#18b566",
-  successDisabled: "#71d5a1",
-  successLight: "#dbf1e1",
-  mainColor: "#303133",
-  contentColor: "#606266",
-  tipsColor: "#909399",
-  lightColor: "#c0c4cc",
-  borderColor: "#e4e7ed"
-};
-var _default = color;
-exports.default = _default;
-
-/***/ }),
-/* 104 */
-/*!******************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/type2icon.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/**
- * 根据主题type值,获取对应的图标
- * @param String type 主题名称,primary|info|error|warning|success
- * @param String fill 是否使用fill填充实体的图标  
- */
-function type2icon() {
-  var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'success';
-  var fill = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-  // 如果非预置值,默认为success
-  if (['primary', 'info', 'error', 'warning', 'success'].indexOf(type) == -1) type = 'success';
-  var iconName = '';
-  // 目前(2019-12-12),info和primary使用同一个图标
-  switch (type) {
-    case 'primary':
-      iconName = 'info-circle';
-      break;
-    case 'info':
-      iconName = 'info-circle';
-      break;
-    case 'error':
-      iconName = 'close-circle';
-      break;
-    case 'warning':
-      iconName = 'error-circle';
-      break;
-    case 'success':
-      iconName = 'checkmark-circle';
-      break;
-    default:
-      iconName = 'checkmark-circle';
-  }
-  // 是否是实体类型,加上-fill,在icon组件库中,实体的类名是后面加-fill的
-  if (fill) iconName += '-fill';
-  return iconName;
-}
-var _default = type2icon;
-exports.default = _default;
-
-/***/ }),
-/* 105 */
-/*!********************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/randomArray.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-// 打乱数组
-function randomArray() {
-  var array = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  // 原理是sort排序,Math.random()产生0<= x < 1之间的数,会导致x-0.05大于或者小于0
-  return array.sort(function () {
-    return Math.random() - 0.5;
-  });
-}
-var _default = randomArray;
-exports.default = _default;
-
-/***/ }),
-/* 106 */
-/*!****************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/addUnit.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = addUnit;
-var _test = _interopRequireDefault(__webpack_require__(/*! ./test.js */ 96));
-// 添加单位，如果有rpx，%，px等单位结尾或者值为auto，直接返回，否则加上rpx单位结尾
-function addUnit() {
-  var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'auto';
-  var unit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'rpx';
-  value = String(value);
-  // 用uView内置验证规则中的number判断是否为数值
-  return _test.default.number(value) ? "".concat(value).concat(unit) : value;
-}
-
-/***/ }),
-/* 107 */
-/*!***************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/random.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-function random(min, max) {
-  if (min >= 0 && max > 0 && max >= min) {
-    var gab = max - min + 1;
-    return Math.floor(Math.random() * gab + min);
-  } else {
-    return 0;
-  }
-}
-var _default = random;
-exports.default = _default;
-
-/***/ }),
-/* 108 */
-/*!*************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/trim.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-function trim(str) {
-  var pos = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'both';
-  if (pos == 'both') {
-    return str.replace(/^\s+|\s+$/g, "");
-  } else if (pos == "left") {
-    return str.replace(/^\s*/, '');
-  } else if (pos == 'right') {
-    return str.replace(/(\s*$)/g, "");
-  } else if (pos == 'all') {
-    return str.replace(/\s+/g, "");
-  } else {
-    return str;
-  }
-}
-var _default = trim;
-exports.default = _default;
-
-/***/ }),
-/* 109 */
-/*!**************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/toast.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-function toast(title) {
-  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
-  uni.showToast({
-    title: title,
-    icon: 'none',
-    duration: duration
-  });
-}
-var _default = toast;
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-/* 110 */
-/*!******************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/getParent.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = getParent;
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-// 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
-// this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
-function getParent(name, keys) {
-  var parent = this.$parent;
-  // 通过while历遍，这里主要是为了H5需要多层解析的问题
-  while (parent) {
-    // 父组件
-    if (parent.$options.name !== name) {
-      // 如果组件的name不相等，继续上一级寻找
-      parent = parent.$parent;
-    } else {
-      var _ret = function () {
-        var data = {};
-        // 判断keys是否数组，如果传过来的是一个数组，那么直接使用数组元素值当做键值去父组件寻找
-        if (Array.isArray(keys)) {
-          keys.map(function (val) {
-            data[val] = parent[val] ? parent[val] : '';
-          });
-        } else {
-          // 历遍传过来的对象参数
-          for (var i in keys) {
-            // 如果子组件有此值则用，无此值则用父组件的值
-            // 判断是否空数组，如果是，则用父组件的值，否则用子组件的值
-            if (Array.isArray(keys[i])) {
-              if (keys[i].length) {
-                data[i] = keys[i];
-              } else {
-                data[i] = parent[i];
-              }
-            } else if (keys[i].constructor === Object) {
-              // 判断是否对象，如果是对象，且有属性，那么使用子组件的值，否则使用父组件的值
-              if (Object.keys(keys[i]).length) {
-                data[i] = keys[i];
-              } else {
-                data[i] = parent[i];
-              }
-            } else {
-              // 只要子组件有传值，即使是false值，也是“传值”了，也需要覆盖父组件的同名参数
-              data[i] = keys[i] || keys[i] === false ? keys[i] : parent[i];
-            }
-          }
-        }
-        return {
-          v: data
-        };
-      }();
-      if ((0, _typeof2.default)(_ret) === "object") return _ret.v;
-    }
-  }
-  return {};
-}
-
-/***/ }),
-/* 111 */
-/*!****************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/$parent.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = $parent;
-// 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
-// this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
-// 这里默认值等于undefined有它的含义，因为最顶层元素(组件)的$parent就是undefined，意味着不传name
-// 值(默认为undefined)，就是查找最顶层的$parent
-function $parent() {
-  var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-  var parent = this.$parent;
-  // 通过while历遍，这里主要是为了H5需要多层解析的问题
-  while (parent) {
-    // 父组件
-    if (parent.$options && parent.$options.name !== name) {
-      // 如果组件的name不相等，继续上一级寻找
-      parent = parent.$parent;
-    } else {
-      return parent;
-    }
-  }
-  return false;
-}
-
-/***/ }),
-/* 112 */
-/*!************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/sys.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.os = os;
-exports.sys = sys;
-function os() {
-  return uni.getSystemInfoSync().platform;
-}
-;
-function sys() {
-  return uni.getSystemInfoSync();
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-/* 113 */
-/*!*****************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/debounce.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var timeout = null;
-
-/**
- * 防抖原理：一定时间内，只有最后一次操作，再过wait毫秒后才执行函数
- * 
- * @param {Function} func 要执行的回调函数 
- * @param {Number} wait 延时的时间
- * @param {Boolean} immediate 是否立即执行 
- * @return null
- */
-function debounce(func) {
-  var wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
-  var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-  // 清除定时器
-  if (timeout !== null) clearTimeout(timeout);
-  // 立即执行，此类情况一般用不到
-  if (immediate) {
-    var callNow = !timeout;
-    timeout = setTimeout(function () {
-      timeout = null;
-    }, wait);
-    if (callNow) typeof func === 'function' && func();
-  } else {
-    // 设置定时器，当最后一次操作后，timeout不会再被清除，所以在延时wait毫秒后执行func回调方法
-    timeout = setTimeout(function () {
-      typeof func === 'function' && func();
-    }, wait);
-  }
-}
-var _default = debounce;
-exports.default = _default;
-
-/***/ }),
-/* 114 */
-/*!*****************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/function/throttle.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var timer, flag;
-/**
- * 节流原理：在一定时间内，只能触发一次
- * 
- * @param {Function} func 要执行的回调函数 
- * @param {Number} wait 延时的时间
- * @param {Boolean} immediate 是否立即执行
- * @return null
- */
-function throttle(func) {
-  var wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
-  var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-  if (immediate) {
-    if (!flag) {
-      flag = true;
-      // 如果是立即执行，则在wait毫秒内开始时执行
-      typeof func === 'function' && func();
-      timer = setTimeout(function () {
-        flag = false;
-      }, wait);
-    }
-  } else {
-    if (!flag) {
-      flag = true;
-      // 如果是非立即执行，则在wait毫秒内的结束处执行
-      timer = setTimeout(function () {
-        flag = false;
-        typeof func === 'function' && func();
-      }, wait);
-    }
-  }
-}
-;
-var _default = throttle;
-exports.default = _default;
-
-/***/ }),
-/* 115 */
-/*!*************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/config/config.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-// 此版本发布于2023-03-27
-var version = '1.8.8';
-var _default = {
-  v: version,
-  version: version,
-  // 主题名称
-  type: ['primary', 'success', 'info', 'error', 'warning']
-};
-exports.default = _default;
-
-/***/ }),
-/* 116 */
-/*!*************************************************!*\
-  !*** E:/y/lanya/uview-ui/libs/config/zIndex.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-// uniapp在H5中各API的z-index值如下：
-/**
- * actionsheet: 999
- * modal: 999
- * navigate: 998
- * tabbar: 998
- * toast: 999
- */
-var _default = {
-  toast: 10090,
-  noNetwork: 10080,
-  // popup包含popup，actionsheet，keyboard，picker的值
-  popup: 10075,
-  mask: 10070,
-  navbar: 980,
-  topTips: 975,
-  sticky: 970,
-  indexListSticky: 965
-};
-exports.default = _default;
+module.exports = "/static/img/goods.jpg";
 
 /***/ })
 ]]);

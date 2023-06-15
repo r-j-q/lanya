@@ -136,6 +136,29 @@
 			}
 		},
 		methods: {
+			// 云函数
+				async getPhoneNumber (e) {
+						 
+						wx.cloud.init() //初始化
+						
+						wx.cloud.callFunction({  //调用云服务
+							name: "payCode",    //云函数名称
+							data: {
+								outTradeNo: outTradeNo,   
+								openId: openId,  
+								returnCode: returnCode,   
+								cashFee: cashFee,  
+								},
+							})
+							.then(res => {
+									console.log('成功',res)
+									console.log('手机号',res.result.phoneInfo.phoneNumber)
+								})
+							.catch(err => {
+									console.log('失败',res)
+								})
+						}, 
+			//云函数
 
 			btnClick() {
 				this.shows = true;

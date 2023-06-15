@@ -1,0 +1,7 @@
+{
+  "name": "payCode",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}
