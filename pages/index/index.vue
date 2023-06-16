@@ -1,9 +1,9 @@
 <template>
 	<view class="backgroundColorLine">
-		<view class="getLocation" @click="handleLanya">
+		<!-- 	<view class="getLocation" @click="handleLanya">
 			<image :src="getLocation" class="getLocation-"></image>
 			{{address_component.street_number ||"定位失败，点击重新定位"}}
-		</view>
+		</view> -->
 		<!-- <nearby></nearby> -->
 		<image :src="lanya" class="lanyastyle"></image>
 		<!-- <button type="primary" @click="startBluetoothDeviceDiscovery">搜索蓝牙</button>
@@ -33,7 +33,7 @@
 
 			<!-- 	<button v-else open-type="getPhoneNumber" v-if="!getUserInfoDataToken" class="chexiao" @click.stop="loginfn"
 				@getphonenumber.stop="onGetPhoneNumber"> 手机号授权</button> -->
-			<button type="primary" class="writeStyle12" @click="openBluetoothAdapterPay('open')">开 盒</button>
+			<button type="primary" class="writeStyle12" @click="openWeiXinAlipay">开 盒</button>
 			<!-- <button type="primary" class="writeStyle12" @click="createorder('PASS',2)">开二盒</button> -->
 			<button type="primary" class="writeStyle12" @click="openBluetoothAdapterPay('openSelf')">激 活 机 身</button>
 		</view>
@@ -75,8 +75,8 @@
 
 <script>
 	// import nearby from '@/components/pretty-nearby/pretty-nearby.vue'
-	import QQMapWX from '../../utils/qqmap-wx-jssdk.js'
-	var qqmapsdk;
+	// import QQMapWX from '../../utils/qqmap-wx-jssdk.js'
+	// var qqmapsdk;
 	export default {
 		components: {
 			// nearby
@@ -114,9 +114,12 @@
 			}
 		},
 		onLoad() {
-			// #ifdef APP-PLUS
-			this.handleLanya()
+			// 去掉位置授权
+			// this.handleLanya()
+			// #ifdef MP-WEIXIN
+			this.loginfn()
 			// #endif
+
 			// #ifdef MP-ALIPAY
 			this.userAlipayLoginCode()
 			// #endif
@@ -140,6 +143,14 @@
 			}
 		},
 		methods: {
+			openWeiXinAlipay() {
+				// #ifdef MP-WEIXIN
+				this.openBluetoothAdapterPay('open');
+				// #endif
+				// #ifdef MP-ALIPAY
+				this.createOrderAlipay()
+				// #endif
+			},
 			// 支付宝登录授权认证
 			userAlipayLoginCode() {
 				let that = this;
@@ -178,11 +189,54 @@
 								.data.userinfo);
 							this.getUserInfoDataToken = this.getUserInfo
 								.data.userinfo ? true : false
-						} 
+						}
 
 
 					}
 				})
+			},
+			// 创建订单
+			createOrderAlipay() {
+				let _this = this;
+				uni.request({
+					url: 'https://ys.shningmi.com/api/alipay/order',
+					data: {
+						guid: "guid", //暂时商品参数唯一标识
+						qty: 1, //数量
+						latitude: "",
+						longitude: "",
+						address: "",
+						device_id: _this.list[0].name,
+					},
+					header: {
+						'Content-Type': 'application/json',
+						'token': _this.getUserInfo.data.token
+					},
+					method: 'POST',
+					success: (res) => {
+						if (res.code == 1) {
+							_this.paymentAliHandler(res.data)
+
+						}
+
+					}
+				})
+			},
+			//订单回调，进行支付宝支付
+			paymentAliHandler(paymentParams) {
+				// 使用支付宝支付接口 
+				uni.requestPayment({
+					provider: 'alipay',
+					orderInfo: paymentParams.trade_no,
+					success: (res) => {
+						if (res && res.resultCode === '9000') {
+
+						}
+					},
+					fail: () => {
+						// uni.hideLoading();
+					},
+				});
 			},
 			// 支付宝登录授权认证
 
@@ -295,56 +349,56 @@
 				});
 			},
 			// 999999999
-			handleLanya() {
-				const that = this
+			// handleLanya() {
+			// 	const that = this
 
 
-				var QQMapWX = require('../../utils/qqmap-wx-jssdk.js')
-				var qqmapsdk = new QQMapWX({
-					key: 'OB7BZ-S6FWT-GOBXR-LONYL-GKEE5-OTBRD' // 必填
-				})
-				wx.getLocation({
-					type: 'wgs84',
-					success(res) {
-						console.log('纬度-------->', res)
-						that.latitude = res.latitude
-						that.longitude = res.longitude
+			// 	var QQMapWX = require('../../utils/qqmap-wx-jssdk.js')
+			// 	var qqmapsdk = new QQMapWX({
+			// 		key: 'OB7BZ-S6FWT-GOBXR-LONYL-GKEE5-OTBRD' // 必填
+			// 	})
+			// 	wx.getLocation({
+			// 		type: 'wgs84',
+			// 		success(res) {
+			// 			console.log('纬度-------->', res)
+			// 			that.latitude = res.latitude
+			// 			that.longitude = res.longitude
 
 
-						wx.setStorageSync('latitude', res.latitude)
-						wx.setStorageSync('longitude', res.longitude)
-					},
-					fail(err) {
-						// uni.showToast({
-						// 	title: "授权未通过",
-						// 	icon: "none",
-						// });
-						that.openAuthSetting();
-					},
-					complete() {
-						// 坐标转换
-						qqmapsdk.reverseGeocoder({
-							location: {
-								latitude: wx.getStorageSync('latitude'),
-								longitude: wx.getStorageSync('longitude')
-							},
-							success: function(res) {
-								that.address = res.result.address
-								that.address_component = res.result
-									.address_component;
-								console.log("11", res.result)
-								that.loginfn()
-								wx.setStorageSync('address_component', res
-									.result.address_component
-									.city)
-							},
-							fail: function(error) {
-								console.error('错误了', error)
-							}
-						})
-					}
-				})
-			},
+			// 			wx.setStorageSync('latitude', res.latitude)
+			// 			wx.setStorageSync('longitude', res.longitude)
+			// 		},
+			// 		fail(err) {
+			// 			// uni.showToast({
+			// 			// 	title: "授权未通过",
+			// 			// 	icon: "none",
+			// 			// });
+			// 			that.openAuthSetting();
+			// 		},
+			// 		complete() {
+			// 			// 坐标转换
+			// 			qqmapsdk.reverseGeocoder({
+			// 				location: {
+			// 					latitude: wx.getStorageSync('latitude'),
+			// 					longitude: wx.getStorageSync('longitude')
+			// 				},
+			// 				success: function(res) {
+			// 					that.address = res.result.address
+			// 					that.address_component = res.result
+			// 						.address_component;
+			// 					console.log("11", res.result)
+			// 					that.loginfn()
+			// 					wx.setStorageSync('address_component', res
+			// 						.result.address_component
+			// 						.city)
+			// 				},
+			// 				fail: function(error) {
+			// 					console.error('错误了', error)
+			// 				}
+			// 			})
+			// 		}
+			// 	})
+			// },
 
 			// 用户授权登录
 			//首先点击登录按钮的时候获取一下code，保存到data里
@@ -799,7 +853,13 @@
 				uni.openBluetoothAdapter({
 					success: (res) => {
 						// 开启支付，为了测试先注释掉
+						// #ifdef MP-WEIXIN
 						that.createorder('PBSS', 1);
+						// #endif
+						// #ifdef MP-ALIPAY
+						that.createOrderAlipay()
+						// #endif
+
 
 						console.log('7777777')
 					},
@@ -839,20 +899,18 @@
 					},
 				});
 			},
-			// 创建订单
+			// 微信创建订单
 			createorder(v, numV) {
 				let _this = this;
-				// _this.writeBLECharacteristicValue(v);
-
-				// console.log('-------->',_this.getUserInfo);
 				uni.request({
 					url: 'https://ys.shningmi.com/api/order/create',
 					data: {
 						guid: "guid",
 						qty: numV,
-						address: _this.address,
-						latitude: _this.latitude,
-						longitude: _this.longitude
+						address: "",
+						latitude: "",
+						longitude: "",
+						device_id: _this.list[0].name
 					},
 					header: {
 						'Content-Type': 'application/json',
@@ -889,9 +947,7 @@
 			},
 			// 8888888888
 
-			// 获取当前位置
 
-			// 当前位置
 		}
 	}
 </script>
