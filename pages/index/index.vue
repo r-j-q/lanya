@@ -5,7 +5,10 @@
 			{{address_component.street_number ||"定位失败，点击重新定位"}}
 		</view> -->
 		<!-- <nearby></nearby> -->
-		<image :src="lanya" class="lanyastyle"></image>
+		<view class="lanyastyle">
+			<image :src="lanya" class=""></image>
+		</view>
+
 		<!-- <button type="primary" @click="startBluetoothDeviceDiscovery">搜索蓝牙</button>
 		<button type="primary" @click="onBluetoothDeviceFound">发现外围设备</button>
 		<button type="primary" @click="getBluetoothDevices">获取蓝牙设备信息</button>
@@ -33,9 +36,10 @@
 
 			<!-- 	<button v-else open-type="getPhoneNumber" v-if="!getUserInfoDataToken" class="chexiao" @click.stop="loginfn"
 				@getphonenumber.stop="onGetPhoneNumber"> 手机号授权</button> -->
-			<button type="primary" class="writeStyle12" @click="openWeiXinAlipay">开 盒</button>
+
 			<!-- <button type="primary" class="writeStyle12" @click="createorder('PASS',2)">开二盒</button> -->
-			<button type="primary" class="writeStyle12" @click="openBluetoothAdapterPay('openSelf')">激 活 机 身</button>
+			<button type="primary" class="writeStyle12" @click="openBluetoothAdapterPay('openSelf')">激&nbsp;&nbsp;&nbsp;&nbsp;活</button>
+			<button type="primary" class="writeStyle12" @click="openWeiXinAlipay">开&nbsp;&nbsp;&nbsp;&nbsp;盒</button>
 		</view>
 
 
@@ -59,8 +63,8 @@
 						沃迈得科技 申请
 					</view>
 				</view>
-				<view class="s3"> 获取你的位置信息</view>
-				<view class="s4"> 获取当前位置</view>
+				<view class="s3"> 获取你的蓝牙信息</view>
+				<view class="s4"> 获取当前蓝牙</view>
 			</view>
 			<view class="s5">
 
@@ -154,13 +158,15 @@
 			// 支付宝登录授权认证
 			userAlipayLoginCode() {
 				let that = this;
-				wx.login({
-					success(res) {
-						that.alipayLogin(res.code)
+				my.getAuthCode({
+					scopes: 'auth_user',
+					success: res => {
+						that.alipayLogin(res.authCode)
 					},
 				});
 			},
 			alipayLogin(code) {
+				let _this = this;
 				uni.request({
 					url: 'https://ys.shningmi.com/api/alipay/login',
 					data: {
@@ -168,28 +174,31 @@
 					},
 					header: {
 						'Content-Type': 'application/json',
-						'token': _this.getUserInfo.data.token
+
 					},
 					method: 'POST',
 					success: (res) => {
+
 						let {
 							data
 						} = res;
+						if (data.code == 1) {
+							uni.setStorageSync('usersInfo', JSON.stringify(
+								data));
+							this.getUserInfo = JSON.parse(uni.getStorageSync(
+								'usersInfo'));
+							// console.log('缓存数据--2----', this.getUserInfo.data
+							// 	.userinfo);
+							if (this.getUserInfo.data && this.getUserInfo.data
+								.userinfo) {
 
-						uni.setStorageSync('usersInfo', JSON.stringify(
-							data));
-						this.getUserInfo = JSON.parse(uni.getStorageSync(
-							'usersInfo'));
-						console.log('缓存数据--2----', this.getUserInfo.data
-							.userinfo);
-						if (this.getUserInfo.data && this.getUserInfo.data
-							.userinfo) {
-
-							console.log('缓存数据--2----', this.getUserInfo
-								.data.userinfo);
-							this.getUserInfoDataToken = this.getUserInfo
-								.data.userinfo ? true : false
+								// console.log('缓存数据--2----', this.getUserInfo
+								// 	.data.userinfo);
+								this.getUserInfoDataToken = this.getUserInfo
+									.data.userinfo ? true : false
+							}
 						}
+
 
 
 					}
@@ -214,8 +223,9 @@
 					},
 					method: 'POST',
 					success: (res) => {
-						if (res.code == 1) {
-							_this.paymentAliHandler(res.data)
+						console.log('-1000----->', res)
+						if (res.data.code == 1) {
+							_this.paymentAliHandler(res.data.data)
 
 						}
 
@@ -224,13 +234,15 @@
 			},
 			//订单回调，进行支付宝支付
 			paymentAliHandler(paymentParams) {
+				let _this = this;
+
 				// 使用支付宝支付接口 
 				uni.requestPayment({
 					provider: 'alipay',
 					orderInfo: paymentParams.trade_no,
 					success: (res) => {
 						if (res && res.resultCode === '9000') {
-
+							_this.writeBLECharacteristicValue('PBSS')
 						}
 					},
 					fail: () => {
@@ -475,23 +487,25 @@
 
 			// 手动连接蓝牙
 			handleOpenBluetoothAdapter() {
-				if (this.openLanYa) {
-					uni.showLoading({
-						title: '请打开手机蓝牙'
-					});
-					console.log("66666666666")
-					// return
-				} else {
-					console.log("888888888888")
-					this.openLanYa = false;
-					clearInterval(this.timer)
-					uni.hideLoading()
-				}
-
-
+				// if (this.openLanYa) {
+				// 	// uni.showLoading({
+				// 	// 	title: '请打开手机蓝牙'
+				// 	// });
+				// 	// this.btnClick()
+				// 	console.log("66666666666")
+				// 	// return
+				// } else {
+				// 	console.log("888888888888")
+				// 	this.openLanYa = false;
+				// 	clearInterval(this.timer)
+				// 	uni.hideLoading()
+				// }
+				//      	this.openLanYa = false;
+				// clearInterval(this.timer)
+				console.log("----------------->>>>>")
 				uni.openBluetoothAdapter({
 					success: (res) => { //已打开
-						uni.getBluetoothAdapterState({ //蓝牙的匹配状态
+						uni.getBluetoothAdapterState({
 							success: (res1) => {
 								this.openLanYa = false;
 								clearInterval(this.timer)
@@ -501,6 +515,8 @@
 								this.startBluetoothDeviceDiscovery()
 							},
 							fail(error) {
+								// this.openLanYa = false;
+								this.btnClick()
 								uni.showToast({
 									icon: 'none',
 									duration: this
@@ -511,12 +527,13 @@
 						});
 
 					},
-					fail: err => { //未打开 
-						// uni.showToast({
-						// 	icon: 'none',
-						// 	duration: 10000,
-						// 	title: '查看手机蓝牙是否打开'
-						// });
+					fail: err => {
+						//未打开 
+						uni.showToast({
+							icon: 'none',
+							duration: 10000,
+							title: '查看手机蓝牙是否打开'
+						});
 					}
 				})
 			},
@@ -541,6 +558,7 @@
 
 					if (this.list.indexOf(res.devices[0].deviceId) == -1) {
 						if (res.devices[0].name.slice(0, 4) === 'WMD8') {
+							console.log("支付宝蓝牙--2w------", res.devices)
 							this.createBLEConnection(res.devices[0].deviceId)
 							this.list.push({
 								name: res.devices[0].name,
@@ -597,7 +615,8 @@
 			//获取蓝牙特征
 			getBLEDeviceCharacteristics() {
 				let _this = this;
-				console.log("进入特征");
+				console.log("--11----------", this.deviceId);
+				console.log("--12----------", this.serviceId);
 				setTimeout(() => {
 					uni.getBLEDeviceCharacteristics({
 						// 这里的 deviceId 需要已经通过 createBLEConnection 与对应设备建立链接
@@ -605,26 +624,30 @@
 						// 这里的 serviceId 需要在 getBLEDeviceServices 接口中获取
 						serviceId: this.serviceId,
 						success: (res) => {
-							console.log(
-								'特征getBLEDeviceCharacteristics',
-								res)
-							this.characteristics = res
-								.characteristics
-							console.log('特征数组', this
-								.characteristics)
+							console.log('特征getBLEDeviceCharacteristics', res)
+							this.characteristics = res.characteristics
+							console.log('特征数组---5--', res.characteristics)
 							// "0000FFE1-0000-1000-8000-00805F9B34FB"
 							res.characteristics.forEach((item) => {
-								if (item.uuid.indexOf(
-										"FFE1") != -1) {
-									_this
-										.characteristicId =
-										item.uuid
+								// #ifdef MP-WEIXIN
+								if (item.uuid.indexOf("FFE1") != -1) {
+									_this.characteristicId = item.uuid
 									//console.log('characteristicId:', item.uuid)
 									//利用传参的形势传给下面的notify，这里的uuid如果都需要用到，就不用做判断了，建议使用setTimeout进行间隔性的调用此方法
-									_this
-										.notifyBLECharacteristicValueChange(
-											item.uuid)
+									_this.notifyBLECharacteristicValueChange(item.uuid)
 								}
+								// #endif
+								// #ifdef MP-ALIPAY
+								console.log('特征数组---9--', item.characteristicId)
+								if (item.characteristicId.indexOf("ffe1") != -1 || item
+									.characteristicId.indexOf("FFE1") != -1) {
+									_this.characteristicId = item.characteristicId
+									//console.log('characteristicId:', item.uuid)
+									//利用传参的形势传给下面的notify，这里的uuid如果都需要用到，就不用做判断了，建议使用setTimeout进行间隔性的调用此方法
+									_this.notifyBLECharacteristicValueChange(item
+										.characteristicId)
+								}
+								// #endif
 							})
 						},
 						fail: (res) => {
@@ -636,7 +659,9 @@
 			// 启用 notify 功能
 			notifyBLECharacteristicValueChange(characteristicId) {
 				let _this = this;
-				console.log(characteristicId, 'characteristicId')
+				console.log(characteristicId, '--------1----------')
+				console.log(this.deviceId, '--------2----------')
+				console.log(this.serviceId, '--------3----------')
 				uni.notifyBLECharacteristicValueChange({
 					state: true, // 启用 notify 功能
 					// 这里的 deviceId 需要已经通过 createBLEConnection 与对应设备建立链接
@@ -646,7 +671,7 @@
 					// 这里的 characteristicId 需要在 getBLEDeviceCharacteristics 接口中获取
 					characteristicId: characteristicId,
 					success: (res) => {
-						console.log(res)
+						// console.log(res)
 						// console.log(this.characteristicId)
 						_this.listenValueChange()
 						console.log(
@@ -662,6 +687,7 @@
 			},
 			//获取蓝牙的所有服务
 			getBLEDeviceServices() {
+				console.log('获取到蓝牙所有的服务-deviceId----:', this.deviceId)
 				setTimeout(() => {
 					uni.getBLEDeviceServices({
 						// 这里的 deviceId 需要已经通过 createBLEConnection 与对应设备建立链接
@@ -672,15 +698,25 @@
 							// 1: {uuid: "00001800-0000-1000-8000-00805F9B34FB", isPrimary: true}
 							// 2: {uuid: "00001801-0000-1000-8000-00805F9B34FB", isPrimary: true}
 							res.services.forEach((item) => {
-								if (item.uuid.indexOf(
-										"FFE0") != -1) {
-									this.serviceId = item
-										.uuid;
+								// #ifdef MP-WEIXIN
+								if (item.uuid.indexOf("FFE0") != -1) {
+									this.serviceId = item.uuid;
 									console.log("1800特征值",
 										this.serviceId)
 									//获取特征
 									this.getBLEDeviceCharacteristics()
 								}
+								// #endif
+								// #ifdef MP-ALIPAY
+								if (item.uuid.indexOf("ffe0") != -1 || item.uuid.indexOf(
+										"FFE0") != -1) {
+									this.serviceId = item.uuid;
+									console.log("1800特征值",
+										this.serviceId)
+									//获取特征
+									this.getBLEDeviceCharacteristics()
+								}
+								// #endif
 							})
 						}
 					})
@@ -741,6 +777,8 @@
 							icon: 'none',
 							title: "开启成功"
 						})
+						// 开盒后关闭蓝牙
+						this.onBLEConnectionStateChange()
 					},
 					fail(res) {
 						console.log('写入失败1', JSON.stringify(res))
@@ -855,9 +893,13 @@
 						// 开启支付，为了测试先注释掉
 						// #ifdef MP-WEIXIN
 						that.createorder('PBSS', 1);
+						setInterval(() => {
+							that.createorder('PBSS', 1);
+						}, 25000)
 						// #endif
 						// #ifdef MP-ALIPAY
 						that.createOrderAlipay()
+
 						// #endif
 
 
@@ -902,6 +944,7 @@
 			// 微信创建订单
 			createorder(v, numV) {
 				let _this = this;
+				console.log('支付成功---999------------>', _this.list[0].name);
 				uni.request({
 					url: 'https://ys.shningmi.com/api/order/create',
 					data: {
@@ -918,6 +961,7 @@
 					},
 					method: 'POST',
 					success: (res) => {
+						console.log('支付成功--------------->', res);
 						// if (res.code == 1) {
 						uni.requestPayment({
 							provider: 'wxpay', // 服务提提供商
@@ -946,6 +990,12 @@
 
 			},
 			// 8888888888
+			// 断开蓝牙
+			onBLEConnectionStateChange() {
+				uni.onBLEConnectionStateChange((res) => {
+
+				})
+			}
 
 
 		}
@@ -1023,11 +1073,21 @@
 	}
 
 	.lanyastyle {
-		width: 500upx;
-		height: 500upx;
+		width: 500rpx;
+		/* #ifdef MP-WEIXIN */
+		height: 666rpx;
+		/* #endif */
+		/* #ifdef MP-ALIPAY */
+		height: 700rpx;
+		/* #endif */
 		margin: 0 auto;
 		display: flex;
 		padding-top: 24%;
+	}
+
+	.lanyastyle image {
+		width: 100%;
+		height: 100%;
 	}
 
 	.backgroundColorLineText {
@@ -1062,10 +1122,10 @@
 	}
 
 	.writeStyle12 {
-		font-size: 30upx;
-		width: 200upx;
+		font-size: 50upx;
+		width: 230rpx;
 		height: 100upx;
-		line-height: 100upx;
+		line-height: 100upx; 
 	}
 
 	.huanxing {

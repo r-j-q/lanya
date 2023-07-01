@@ -1,5 +1,5 @@
 {
-    "name" : "沃迈得",
+    "name" : "沃迈得商城",
     "appid" : "__UNI__D325ADD",
     "description" : "",
     "versionName" : "1.0.0",
@@ -58,18 +58,18 @@
     /* 小程序特有相关 */
     "mp-weixin" : {
         "appid" : "wx74da6d663a402a12",
-        "requiredPrivateInfos" : [ "getLocation", "chooseAddress", "chooseLocation" ],
+        // "requiredPrivateInfos" : [ "getLocation", "chooseAddress", "chooseLocation" ],
         // "appid" : "wxde357cab633aef0d",客户的
         "setting" : {
             "urlCheck" : false
         },
-        "usingComponents" : true,
-        "permission" : {
-            "scope.userLocation" : {
-                "desc" : "获取当前位置"
-            }
-        }
+        "usingComponents" : true
     },
+    // "permission" : {
+    //     "scope.userLocation" : {
+    //         "desc" : "获取当前位置"
+    //     }
+    // }
     "mp-alipay" : {
         "usingComponents" : true,
         "appid" : "2021004100602503"
@@ -91,10 +91,11 @@
         "devServer" : {
             "port" : ""
         }
-    },
-    "permission" : {
-        "scope.userLocation" : {
-            "desc" : "你的位置信息将用于小程序位置接口的效果展示"
-        }
     }
 }
+// "permission" : {
+//     "scope.userLocation" : {
+//         "desc" : "你的位置信息将用于小程序位置接口的效果展示"
+//     }
+// }
+
